@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:49 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 12:33:28 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:01:01 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,16 @@ static size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
-	while(i < ft_strlen(s) && s[i] != '\0')
+	while (i < ft_strlen(s) && s[i] != '\0')
 	{
 		f(i, s);
 		i++;
 	}
-
 }
 
 /* static void	to_Upper(unsigned int index, char *c) 

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:10:15 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 15:50:15 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:01:24 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		y;
 	int		x;
