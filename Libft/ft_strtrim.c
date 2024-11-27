@@ -6,15 +6,13 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:10:15 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 17:01:24 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:29:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-/* #include "libft.h" */
+#include "libft.h"
 
-static char	*ft_strchr(const char *str, int c)
+/* static char	*ft_strchr(const char *str, int c)
 {
 	int		i;
 
@@ -70,7 +68,7 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[i++] = s[start++];
 	sub[i] = '\0';
 	return (sub);
-}
+} */
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -79,6 +77,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*ptr;
 
 	y = 0;
+	if (!s1 || !set)
+		return (NULL);
 	while (ft_strchr(set, s1[y]))
 		y++;
 	x = ft_strlen(s1) - 1;
@@ -91,7 +91,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 int	main(void)
 {
 	char	a[] = "casccasacoglio andare a casa";
-	char	b[] = "cas ";
+	char	*b = NULL;
 	char	*ptr = ft_strtrim(a, b);
 	printf("%s", ptr);
 	free(ptr);

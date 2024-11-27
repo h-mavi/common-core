@@ -6,14 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:35:13 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 11:39:08 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:19:40 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+#include "libft.h"
 
 int	ft_isalpha(int a)
 {

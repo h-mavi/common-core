@@ -6,12 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:21:24 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 11:36:59 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:25:10 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static int	n_len(int n)
 {
@@ -43,7 +42,7 @@ static char	*int_min(char	*ptr)
 	return (ptr);
 }
 
-static void	write(char *ptr, int len, int ex)
+static void	frite(char *ptr, int len, int ex)
 {
 	while (len--)
 	{
@@ -74,7 +73,7 @@ char	*ft_itoa(int n)
 		ptr = int_min(ptr);
 		return (ptr);
 	}
-	write(ptr, len, ex);
+	frite(ptr, len, ex);
 	if (n < 0)
 		ptr[0] = '-';
 	return (ptr);

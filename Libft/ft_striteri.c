@@ -6,22 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:49 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 17:01:01 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:25:54 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-
-static size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

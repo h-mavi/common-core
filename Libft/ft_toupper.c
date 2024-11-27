@@ -6,9 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:19:20 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 11:21:27 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:20:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_toupper(int value)
 {
