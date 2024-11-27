@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:10:15 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 17:29:15 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:15:49 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (ptr);
 }
 
-int	main(void)
+/* int	main(void)
 {
-	char	a[] = "casccasacoglio andare a casa";
-	char	*b = NULL;
+	char	a[] = "cia' cia'";
+	char	*b = "'";
 	char	*ptr = ft_strtrim(a, b);
 	printf("%s", ptr);
 	free(ptr);
-}
+} */

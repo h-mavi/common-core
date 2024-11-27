@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:35:13 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 17:19:40 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:15:58 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_isalpha(int a)
 	return (0);
 }
 
-/* int main() {
+/* int()
+{
     char test_chars[] = {'a', '1', '#', 'Z', '9', ' ', '\0'};
     
     for (int i = 0; test_chars[i] != '\0'; i++) {
