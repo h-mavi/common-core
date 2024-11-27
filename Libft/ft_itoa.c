@@ -6,14 +6,14 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:21:24 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 10:30:07 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:36:59 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	n_len(int	n)
+static int	n_len(int n)
 {
 	int	len;
 
@@ -30,12 +30,12 @@ static int	n_len(int	n)
 
 static char	*int_min(char	*ptr)
 {
-	int	i;
+	int		i;
 	char	*int_min;
 
 	i = 0;
 	int_min = "-2147483648";
-	while(int_min[i] != '\0')
+	while (int_min[i] != '\0')
 	{
 		ptr[i] = int_min[i];
 		i++;
@@ -43,7 +43,7 @@ static char	*int_min(char	*ptr)
 	return (ptr);
 }
 
-static void	write(char	*ptr, int	len, int	ex)
+static void	write(char *ptr, int len, int ex)
 {
 	while (len--)
 	{
@@ -52,7 +52,7 @@ static void	write(char	*ptr, int	len, int	ex)
 	}
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*ptr;
 	int		len;
