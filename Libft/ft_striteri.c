@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:49 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 17:25:54 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:16:38 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	i = 0;
 	while (i < ft_strlen(s) && s[i] != '\0')
 	{
-		f(i, s);
+		f(i, &s[i]);
 		i++;
 	}
 }
 
-/* static void	to_Upper(unsigned int index, char *c) 
+/* void	iter(unsigned int i, char * s) 
 {
-	if (c[index] > 96 && c[index] < 123)
-		c[index] -= 32;
+	*s += i;
 }
 
 
 int main(void)
 {
-	char	a[] = "la madonna puttana";
-	ft_striteri(a, to_Upper);
+	char	a[] = "";
+	ft_striteri(a, iter);
 	printf("%s", a);
 } */

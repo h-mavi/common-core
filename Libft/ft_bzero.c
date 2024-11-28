@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:33:23 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 10:33:34 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:42:59 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_bzero(void *buffer, size_t count)
 	char	*str;
 	size_t	i;
 
-	if (!buffer)
+	if (buffer == NULL)
 		return (NULL);
 	str = (char *)buffer;
 	i = 0;

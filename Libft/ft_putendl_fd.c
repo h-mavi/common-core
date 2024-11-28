@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:40:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 11:39:29 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:26:07 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putendl_fd(char *s, int fd)
 	int	i;
 
 	i = -1;
+	if (fd < 0)
+		return ;
 	while (s[++i])
 		write(fd, &s[i], 1);
 	write(fd, "\n", 1);
