@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:51:13 by mfanelli          #+#    #+#              #
-#    Updated: 2024/11/28 15:46:57 by mfanelli         ###   ########.fr        #
+#    Updated: 2024/11/28 17:37:59 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ fclean : clean
 
 bonus: $(BONUS_OBJ)
 	ar rc $(NAME) $(BONUS_OBJ)
-	ranlib $(NAME)//
+	ranlib $(NAME)
 
 all : $(NAME)
 re : fclean all
