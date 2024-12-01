@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 10:47:03 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/29 10:53:35 by mfanelli         ###   ########.fr       */
+/*   Created: 2024/11/27 10:39:46 by mfanelli          #+#    #+#             */
+/*   Updated: 2024/12/01 14:22:45 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_putchar(char c)
 {
-	if (lst == NULL || new == NULL)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	write (1, &c, 1);
 }
 
-/* int main(void)
+/* int	main(void)
 {
-	t_list *head = NULL;
-	int a = 10;
-
-	t_list *new_node = malloc(sizeof(t_list));
-	new_node->content = &a;
-	new_node->next = NULL;
-	ft_lstadd_front(&head, new_node);
-	printf("%d -> NULL\n", *(int *)head->content);
-	free(new_node);
-	return 0;
+	ft_putchar_fd('c', 1);
 } */

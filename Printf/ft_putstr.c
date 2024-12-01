@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 10:47:03 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/29 10:53:35 by mfanelli         ###   ########.fr       */
+/*   Created: 2024/11/27 10:41:10 by mfanelli          #+#    #+#             */
+/*   Updated: 2024/12/01 14:26:40 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_putstr(char *s)
 {
-	if (lst == NULL || new == NULL)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 }
 
-/* int main(void)
+/* int main()
 {
-	t_list *head = NULL;
-	int a = 10;
-
-	t_list *new_node = malloc(sizeof(t_list));
-	new_node->content = &a;
-	new_node->next = NULL;
-	ft_lstadd_front(&head, new_node);
-	printf("%d -> NULL\n", *(int *)head->content);
-	free(new_node);
-	return 0;
+	ft_putstr_fd("abcdef", 1);
+	ft_putstr_fd("|\n1234", 1);
+	ft_putstr_fd("|\t567", 1);
+	ft_putstr_fd("", 1);
+	ft_putstr_fd("|\nend!", 1);
 } */
