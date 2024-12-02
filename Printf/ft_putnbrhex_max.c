@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrhex_min.c                                 :+:      :+:    :+:   */
+/*   ft_putnbrhex_max.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 14:29:37 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:33:00 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_put_nbr_str_min(int *str)
+void	ft_put_nbr_str_max(int *str)
 {
 	int	k;
 
@@ -22,7 +22,7 @@ void	ft_put_nbr_str_min(int *str)
 	return ;
 }
 
-void	ft_rev_int_tab_min(int *tab, int size)
+void	ft_rev_int_tab_max(int *tab, int size)
 {
 	int	count;
 	int	c;
@@ -36,11 +36,11 @@ void	ft_rev_int_tab_min(int *tab, int size)
 		count++;
 	}
 	tab[size] = '\0';
-	ft_put_nbr_str_min(tab);
+	ft_put_nbr_str_max(tab);
 	return ;
 }
 
-int	ft_putnbrhex_min(int nbr)
+int	ft_putnbrhex_max(int nbr)
 {
 	int				j;
 	int				ris[20];
@@ -49,7 +49,7 @@ int	ft_putnbrhex_min(int nbr)
 
 	j = 0;
 	ex = nbr;
-	hex = "0123456789abcdef";
+	hex = "0123456789ABCDEF";
 	if (ex == 0)
 		write(1, "0", 1);
 	while (ex != 0 && hex[0] != '\0' && ex > 0)
@@ -57,6 +57,6 @@ int	ft_putnbrhex_min(int nbr)
 		ris[j++] = hex[ex % 16];
 		ex /= 16;
 	}
-	ft_rev_int_tab_min(ris, j);
+	ft_rev_int_tab_max(ris, j);
 	return (j);
 }

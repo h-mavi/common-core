@@ -6,11 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:41:10 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:46:55 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:29:46 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrhex_MAX.c                                 :+:      :+:    :+:   */
+/*   ft_putnbrhex_ptr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:38:03 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:29:41 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_put_nbr_str_MAX(int *str)
+void	ft_put_nbr_str_ptr(int *str)
 {
 	int	k;
 
@@ -22,7 +22,7 @@ void	ft_put_nbr_str_MAX(int *str)
 	return ;
 }
 
-void	ft_rev_int_tab_MAX(int *tab, int size)
+void	ft_rev_int_tab_ptr(int *tab, int size)
 {
 	int	count;
 	int	c;
@@ -36,29 +36,27 @@ void	ft_rev_int_tab_MAX(int *tab, int size)
 		count++;
 	}
 	tab[size] = '\0';
-	ft_put_nbr_str_MAX(tab);
+	ft_put_nbr_str_ptr(tab);
 	return ;
 }
 
-int	ft_putnbrhex_MAX(int nbr)
+int	ft_putnbrhex_ptr(unsigned long nbr)
 {
-    int				i;
-	int	    		j;
-	int 			ris[1000000];
-	unsigned int	ex;
-    char    		*hex;
+	int					j;
+	int					ris[20];
+	unsigned long long	ex;
+	char				*hex;
 
-	i = 16;
 	j = 0;
 	ex = nbr;
-    hex = "0123456789ABCDEF";
+	hex = "0123456789abcdef";
 	if (ex == 0)
 		write(1, "0", 1);
-    while (ex != 0 && hex[0] != '\0' && ex > 0)
+	while (ex != 0 && hex[0] != '\0' && ex > 0)
 	{
-		ris[j++] = hex[ex % i];
-		ex /= i;
+		ris[j++] = hex[ex % 16];
+		ex /= 16;
 	}
-    ft_rev_int_tab_MAX(ris, j);
+	ft_rev_int_tab_ptr(ris, j);
 	return (j);
 }

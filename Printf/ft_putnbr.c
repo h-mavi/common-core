@@ -6,11 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:40:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 12:01:27 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:29:30 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_nbr_negative(void)
 {
@@ -22,7 +22,7 @@ int	ft_putnbr(int n)
 {
 	int		i;
 	int		temp;
-	char	num[10];
+	char	num[11];
 
 	i = 0;
 	if (n == -2147483648)
