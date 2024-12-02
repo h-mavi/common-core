@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:16:02 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:38:03 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	ft_rev_int_tab_MAX(int *tab, int size)
 	return ;
 }
 
-void	ft_putnbrhex_MAX(int nbr)
+int	ft_putnbrhex_MAX(int nbr)
 {
-    int	    i;
-	int	    j;
-	int 	ris[1000000];
+    int				i;
+	int	    		j;
+	int 			ris[1000000];
 	unsigned int	ex;
-    char    *hex;
+    char    		*hex;
 
 	i = 16;
 	j = 0;
@@ -60,4 +60,5 @@ void	ft_putnbrhex_MAX(int nbr)
 		ex /= i;
 	}
     ft_rev_int_tab_MAX(ris, j);
+	return (j);
 }

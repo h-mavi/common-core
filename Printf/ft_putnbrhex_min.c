@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:16:24 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:38:09 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_rev_int_tab_MIN(int *tab, int size)
 	return ;
 }
 
-void	ft_putnbrhex_min(int nbr)
+int	ft_putnbrhex_min(int nbr)
 {
     int	    i;
 	int	    j;
@@ -60,4 +60,5 @@ void	ft_putnbrhex_min(int nbr)
 		ex /= i;
 	}
     ft_rev_int_tab_MIN(ris, j);
+	return (j);
 }

@@ -6,19 +6,18 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:41:10 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:23:01 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:46:55 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
-	{
 		write(1, &s[i++], 1);
-	}
+	return (i);
 }

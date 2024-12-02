@@ -6,13 +6,14 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:39:46 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 11:22:45 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:33:26 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write (1, &c, 1);
+	return (1);
 }
