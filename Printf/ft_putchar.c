@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:39:46 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/01 14:22:45 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:22:45 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,3 @@ void	ft_putchar(char c)
 {
 	write (1, &c, 1);
 }
-
-/* int	main(void)
-{
-	ft_putchar_fd('c', 1);
-} */

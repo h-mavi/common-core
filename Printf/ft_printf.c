@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 13:03:14 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 09:08:54 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:17:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	va_start (args, *format);
+	va_start (args, format);
 	int	i;
 	int	len;
 
@@ -25,16 +25,10 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i+1] == 's' || format[i+1] == 'c')
-				ft_putstr(va_arg(args, char *));
-			if (format[i+1] == 'i' || format[i+1] == 'd')
-				ft_putnbr(va_arg(args, int));
-			if (format[i+1] == 'u')
-				ft_unsigned_putnbr(va_arg(args, unsigned int));
-			if (format[i+1] == '%')
-				ft_putchar('%');
+			ft_check(args ,format, i);
 			len -= 1;
-		}
+			i += 2;
+		}	
 		ft_putchar(format[i]);
 		i++;
 		len++;
@@ -44,6 +38,9 @@ int	ft_printf(const char *format, ...)
 }
 int	main(void)
 {
-	ft_printf("cacca %d nel puzzo", 5);
-	printf ("cacca %d nel puzzo", 5);
+	/* unsigned int	i  = 4294967295;
+	unsigned int	*ptr = &i; */
+	int	i = -2147483648;
+	ft_printf("cacca %X nel puzzo\n", i);
+	printf ("cacca %X nel puzzo", i);
 }
