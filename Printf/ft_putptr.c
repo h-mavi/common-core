@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:11:57 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 14:29:44 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:05:12 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_putptr(unsigned long long ptr)
 
 	if (!ptr)
 	{
-		write (1, "(nil)", 1);
+		write (1, "(nil)", 5);
 		return (5);
 	}
 	len = 0;

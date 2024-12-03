@@ -6,13 +6,13 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:40:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 14:29:50 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:11:48 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_unsigned_putnbr(unsigned int n)
+int	ft_unsigned_putnbr(unsigned long n)
 {
 	int		i;
 	int		temp;
