@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 13:03:14 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/03 10:16:27 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/03 11:58:56 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_printf(const char *format, ...)
 	len = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if ((format[i] == '%' && format[i + 1] != '\0'))
 		{
 			len = ft_check(args, format, i, len);
 			i += 2;
@@ -41,8 +41,8 @@ int	ft_printf(const char *format, ...)
 }
 /* int	main(void)
 {
-	int	a = ft_printf("%d%%%s%%%p%X\n", -9, "wow", "cosa", 10);
-	int	b = printf ("%d%%%s%%%p%X\n", -9, "wow", "cosa", 10);
+	int	a = ft_printf(" ");
+	int	b = printf (" ");
 	printf ("\nLa lunghezza di ft_printf e' %d\n", a);
 	printf ("La lunghezza di printf e' %d\n", b);
 } */

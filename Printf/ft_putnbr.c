@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:40:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 16:03:14 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/03 11:58:35 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,21 @@ int	control(int n)
 	return (0);
 }
 
-int	ft_nbr_negative(int i)
+int	ft_nbr_negative(int temp)
 {
 	write(1, "-", 1);
-	i = 1;
-	return (i);
+	temp = 1;
+	return (temp);
+}
+
+int	limit(int n, int temp)
+{
+	if (n == -2147483648 || n == 0)
+	{
+		temp = control(n);
+		return (temp);
+	}
+	return (temp);
 }
 
 int	ft_putnbr(int n)
@@ -41,15 +51,13 @@ int	ft_putnbr(int n)
 	char	num[11];
 
 	i = 0;
-	if (n == -2147483648 || n == 0)
-	{
-		temp = control(n);
-		return (temp);
-	}
+	temp = 0;
+	if (n == 0 || n <= INT_MIN)
+		return (temp = limit(n, temp));
 	if (n < 0)
 	{
 		n = -n;
-		i += ft_nbr_negative(i);
+		temp += ft_nbr_negative(temp);
 	}
 	while (n >= 10)
 	{
@@ -57,7 +65,7 @@ int	ft_putnbr(int n)
 		n = n / 10;
 	}
 	num[i] = (n % 10) + '0';
-	temp = i + 1;
+	temp += i + 1;
 	while (i >= 0)
 		write(1, &num[i--], 1);
 	return (temp);

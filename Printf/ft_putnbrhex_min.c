@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:06:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 14:29:37 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:32:39 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	ft_putnbrhex_min(int nbr)
 	ex = nbr;
 	hex = "0123456789abcdef";
 	if (ex == 0)
+	{
 		write(1, "0", 1);
+		return (1);
+	}
 	while (ex != 0 && hex[0] != '\0' && ex > 0)
 	{
 		ris[j++] = hex[ex % 16];

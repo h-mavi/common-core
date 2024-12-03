@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:36:11 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/02 16:12:03 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/03 11:54:55 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
