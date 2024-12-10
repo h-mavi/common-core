@@ -5,12 +5,150 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 14:28:01 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/03 14:34:11 by mfanelli         ###   ########.fr       */
+/*   Created: 2024/12/09 11:48:36 by mfanelli          #+#    #+#             */
+/*   Updated: 2024/12/09 17:27:35 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char    *get_next_line(int fd)
+#include "get_next_line.h"
+
+char	*ft_copy(char *bois)
 {
-    
+	char	*str;
+	int		y;
+	int		x;
+
+	y = 0;
+	x = ft_strlen(bois) + 1;
+	str = (char *)ft_calloc((x), sizeof(char)); //aggiunto il casting
+	if (!str) //! al posto di == NULL
+		return (NULL);
+	while (bois[y] != '\0')
+	{
+		str[y] = bois[y]; //messo il y++ piu' esplicito
+		y++;
+	}
+	str[y] = '\0';
+	return (str);
 }
+
+char	*ft_backup(char *next, char *buff)
+{
+	char	*str;
+	int		x;
+	int		y;
+
+	if (!next) //! al posto di == NULL
+		return (ft_copy(buff)); //check spostato
+	str = (char *)ft_calloc((ft_strlen(next) + ft_strlen(buff) + 1), \
+	sizeof(char)); //casting
+	if (!str) //! al posto di == NULL
+		return (NULL);
+	x = -1;
+	y = 0;
+	while (next[++x] != '\0')
+		str[x] = next[x];
+	while (buff[y] != '\0')
+		str[x++] = buff[y++]; //mancava il ++ al y
+	str[x] = '\0';
+	free (next);
+	return (str);
+}
+
+char	*ft_prep(char *next)
+{
+	char	*str;
+	int		x;
+	int		y;
+
+	if (next == NULL) //spostato il check su
+		return (NULL);
+	x = 0;
+	y = ft_strlen(next);
+	while (next[x] != '\n' && (next[x])) //&& sostituisce ||
+		x++;
+	if (next[x] == '\0')
+	{
+		free (next);
+		return (NULL);
+	}
+	str = (char *)ft_calloc((y - x + 2), sizeof(char)); //casting
+	if (!str)
+		return (NULL);
+	y = 0;
+	while (next[x + 1] != '\0')
+		str[y++] = next[(x++) + 1];
+	str[y + 1] = '\0'; //c'era scritto next al posto di str e x al posto di y
+	free (next);
+	return (str);
+}
+
+char	*ft_read(char *next, char *buff, int fd)
+{
+	int	check;
+
+	check = 1;
+	while (check > 0)
+	{
+		check = read(fd, buff, BUFFER_SIZE);
+		if (check == -1) //c'era scritto fd al posto di check
+		{
+			if (next != NULL)
+				free (next);
+			return (NULL);
+		}
+		if (check == 0) //c'era scritto fd al posto di check
+			break ;
+		buff[check] = '\0';
+		next = ft_backup(next, buff);
+		if (ft_strchr(buff, '\n')) //al posto di buff mandavo nextt!!
+			break ;
+	}
+	return (next);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*buff;
+	char		*end;
+	static char	*next = NULL;
+
+	buff = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (next != NULL)
+			free (next);
+		return (NULL);
+	}
+	end = NULL;
+	buff = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char)); //casting
+	next = ft_read(next, buff, fd);
+	free (buff);
+	buff = NULL;
+	end = ft_substr(next, 0, '\n');
+	next = ft_prep(next);
+	return (end);
+}
+
+/* int main(void) //main del neri
+{
+	int fd;
+	int i;
+
+	i = 0;
+	fd = open("never_gona_give_u_up", O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		return (0);
+	}
+	while (i < 13)
+	{
+		char *s = get_next_line(fd);
+		printf("%s", s);
+		i++;
+		free(s);
+	}
+	close(fd);
+	return 0;
+} */
