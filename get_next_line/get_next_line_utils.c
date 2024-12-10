@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:34:24 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/10 08:06:27 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:41:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_substr(char const *s, unsigned int start, char stop_char)
 	char	*str;
 	size_t	i;
 	size_t	len;
-//intera funzione copiata
+
 	if (s == NULL || s[0] == '\0')
 		return (NULL);
 	len = 0;

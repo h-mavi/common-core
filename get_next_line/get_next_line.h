@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:34:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/10 08:04:52 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:41:38 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <fcntl.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
-# endif
 
 size_t	ft_strlen(const char *str);
 char	*ft_copy(char *bois);

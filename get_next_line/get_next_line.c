@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:48:36 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/10 08:05:54 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:47:37 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_backup(char *next, char *buff)
 	int		y;
 
 	if (next == NULL)
-		return (ft_copy(buff)); //check spostato OBBLIGATORIAMENTE SU
+		return (ft_copy(buff));
 	str = ft_calloc((ft_strlen(next) + ft_strlen(buff) + 1), \
 	sizeof(char));
 	if (str == NULL)
@@ -46,7 +46,7 @@ char	*ft_backup(char *next, char *buff)
 	while (next[++x] != '\0')
 		str[x] = next[x];
 	while (buff[y] != '\0')
-		str[x++] = buff[y++]; //mancava il ++ al y
+		str[x++] = buff[y++];
 	str[x] = '\0';
 	free (next);
 	return (str);
@@ -58,11 +58,11 @@ char	*ft_prep(char *next)
 	int		x;
 	int		y;
 
-	if (next == NULL) //spostato il check su OBBLIGATORIAMENTE SENNO SEGFAULT
+	if (next == NULL)
 		return (NULL);
 	x = 0;
 	y = ft_strlen(next);
-	while (next[x] != '\n' && (next[x])) //&& sostituisce ||
+	while (next[x] != '\n' && (next[x]))
 		x++;
 	if (next[x] == '\0')
 	{
@@ -75,7 +75,7 @@ char	*ft_prep(char *next)
 	y = 0;
 	while (next[x + 1] != '\0')
 		str[y++] = next[(x++) + 1];
-	str[y + 1] = '\0'; //c'era scritto next al posto di str e x al posto di y
+	str[y + 1] = '\0';
 	free (next);
 	return (str);
 }
@@ -88,17 +88,17 @@ char	*ft_read(char *next, char *buff, int fd)
 	while (check > 0)
 	{
 		check = read(fd, buff, BUFFER_SIZE);
-		if (check == -1) //c'era scritto fd al posto di check
+		if (check == -1)
 		{
 			if (next != NULL)
 				free (next);
 			return (NULL);
 		}
-		if (check == 0) //c'era scritto fd al posto di check
+		if (check == 0)
 			break ;
 		buff[check] = '\0';
 		next = ft_backup(next, buff);
-		if (ft_strchr(buff, '\n')) //al posto di buff mandavo nextt!!
+		if (ft_strchr(buff, '\n'))
 			break ;
 	}
 	return (next);
@@ -127,7 +127,7 @@ char	*get_next_line(int fd)
 	return (end);
 }
 
-/* int main(void) //main del neri
+/* int main(void)
 {
 	int fd;
 	int i;
@@ -148,5 +148,4 @@ char	*get_next_line(int fd)
 	}
 	close(fd);
 	return 0;
-}
- */
+} */
