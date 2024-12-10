@@ -6,12 +6,16 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:34:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/10 16:41:38 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:30:49 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdlib.h>
 # include <stdio.h>
