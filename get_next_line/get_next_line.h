@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:34:35 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/09 17:29:18 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:04:52 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define BUFFER_SIZE 5
 # endif
 
-size_t	ft_strlen(char *str);
+size_t	ft_strlen(const char *str);
 char	*ft_copy(char *bois);
 char	*ft_substr(char const *s, unsigned int start, char stop_char);
 char	*ft_prep(char *next);
@@ -32,6 +32,7 @@ char	*ft_backup(char *next, char *buff);
 char	*ft_read(char *next, char *buff, int fd);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *str, int c);
-char	*ft_calloc(size_t count, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_bzero(void *buffer, size_t count);
 
 #endif

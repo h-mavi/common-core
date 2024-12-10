@@ -6,50 +6,41 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:34:24 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/09 17:28:56 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:06:27 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str) ///char al posto di const
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	if (str == NULL)
-		return (0); //if
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	int		i;
-	char	*str;
 
-	if (s == NULL)
-		return (NULL);
-	str = (char *)s;
-	i = 0;
-	while (str[i] != '\0')
-	{
+	i = -1;
+	while (str[++i])
 		if (str[i] == (char)c)
-			return (&str[i]);
-		i++;
-	}
+			return ((char *)str + i);
 	if (str[i] == (char)c)
-		return (&str[i]);
+		return ((char *)str + i);
 	return (NULL);
 }
 
 char	*ft_substr(char const *s, unsigned int start, char stop_char)
 {
 	char	*str;
-	size_t	i;//intera funzione copiata
+	size_t	i;
 	size_t	len;
-
+//intera funzione copiata
 	if (s == NULL || s[0] == '\0')
 		return (NULL);
 	len = 0;
@@ -67,19 +58,27 @@ char	*ft_substr(char const *s, unsigned int start, char stop_char)
 	return (str);
 }
 
-char	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*str;
+
+	str = malloc(nmemb * size);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, size * nmemb);
+	return (str);
+}
+
+void	*ft_bzero(void *buffer, size_t count)
 {
 	char	*str;
 	size_t	i;
 
-	str = (char *)malloc(sizeof(char) * (count * size));
-	if (!str)
+	if (buffer == NULL)
 		return (NULL);
+	str = (char *)buffer;
 	i = 0;
-	while (i < (count * size))
-	{
-		str[i] = '\0';
-		i++;
-	}
-	return (str);
+	while (i < count)
+		str[i++] = 0;
+	return (buffer);
 }

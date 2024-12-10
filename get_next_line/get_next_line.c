@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:48:36 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/09 17:27:35 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:05:54 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@ char	*ft_copy(char *bois)
 	int		y;
 	int		x;
 
-	y = 0;
+	y = -1;
 	x = ft_strlen(bois) + 1;
-	str = (char *)ft_calloc((x), sizeof(char)); //aggiunto il casting
-	if (!str) //! al posto di == NULL
+	str = ft_calloc((x), sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	while (bois[y] != '\0')
-	{
-		str[y] = bois[y]; //messo il y++ piu' esplicito
-		y++;
-	}
+	while (bois[++y] != '\0')
+		str[y] = bois[y];
 	str[y] = '\0';
 	return (str);
 }
@@ -38,11 +35,11 @@ char	*ft_backup(char *next, char *buff)
 	int		x;
 	int		y;
 
-	if (!next) //! al posto di == NULL
-		return (ft_copy(buff)); //check spostato
-	str = (char *)ft_calloc((ft_strlen(next) + ft_strlen(buff) + 1), \
-	sizeof(char)); //casting
-	if (!str) //! al posto di == NULL
+	if (next == NULL)
+		return (ft_copy(buff)); //check spostato OBBLIGATORIAMENTE SU
+	str = ft_calloc((ft_strlen(next) + ft_strlen(buff) + 1), \
+	sizeof(char));
+	if (str == NULL)
 		return (NULL);
 	x = -1;
 	y = 0;
@@ -61,7 +58,7 @@ char	*ft_prep(char *next)
 	int		x;
 	int		y;
 
-	if (next == NULL) //spostato il check su
+	if (next == NULL) //spostato il check su OBBLIGATORIAMENTE SENNO SEGFAULT
 		return (NULL);
 	x = 0;
 	y = ft_strlen(next);
@@ -72,7 +69,7 @@ char	*ft_prep(char *next)
 		free (next);
 		return (NULL);
 	}
-	str = (char *)ft_calloc((y - x + 2), sizeof(char)); //casting
+	str = ft_calloc((y - x + 2), sizeof(char));
 	if (!str)
 		return (NULL);
 	y = 0;
@@ -121,7 +118,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	end = NULL;
-	buff = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char)); //casting
+	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	next = ft_read(next, buff, fd);
 	free (buff);
 	buff = NULL;
@@ -151,4 +148,5 @@ char	*get_next_line(int fd)
 	}
 	close(fd);
 	return 0;
-} */
+}
+ */
