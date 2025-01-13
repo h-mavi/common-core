@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 16:29:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/09 08:57:04 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/01/10 16:51:17 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx-linux/mlx.h"
-#include <stdlib.h>
+#ifndef SO_LONG_H
+# define SO_LONG_H
+# define WIDTH 500
+# define HEIGHT 500
+# include "./printf/ft_printf.h"
+# include "./libft/libft.h"
+# include "./minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 typedef struct	s_vars
 {
 	void	*mlx;
 	void	*win;
-}				t_vars;
+	char    **map;
+}       t_vars;
 
-int	close(int keycode, t_vars *vars)
-{
-	(void)keycode;
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(1);
-}
+int	close_with_x(t_vars *info);
+int	close_with_esc(int keycode, t_vars *info);
+int	map_gen(t_vars *info);
 
-int	main(void)
-{
-	t_vars game;
-
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 500, 500, "Ciucciami la fava");
-	mlx_hook(game.win, 2, 1L<<0, close, &game);
-	mlx_loop(game.mlx);
-	return (1);
-}
+#endif

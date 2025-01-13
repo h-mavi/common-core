@@ -6,11 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:48:36 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/10 18:04:21 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:55:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_copy(char *bois)
 {
@@ -122,10 +122,11 @@ char	*get_next_line(int fd)
 	next = ft_read(next, buff, fd);
 	free (buff);
 	buff = NULL;
-	end = ft_substr(next, 0, '\n');
+	end = ft_substr_gnl(next, 0, '\n');
 	next = ft_prep(next);
 	return (end);
 }
+
 
 /* int main(void)
 {
@@ -133,7 +134,7 @@ char	*get_next_line(int fd)
 	int i;
 
 	i = 0;
-	fd = open("never_gona_give_u_up", O_RDONLY);
+	fd = open("map.ber", O_RDONLY);
 	if (fd < 0)
 	{
 		close(fd);

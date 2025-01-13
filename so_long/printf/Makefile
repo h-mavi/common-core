@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:51:13 by mfanelli          #+#    #+#              #
-#    Updated: 2024/12/03 12:00:05 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/10 16:27:01 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ OBJECTS = $(SOURCES:.c=.o)
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 
+all : $(NAME) clean
+
 $(NAME) : $(OBJECTS)
 	@echo "Compiling $(NAME)"
 	ar -rcs $(NAME) $(OBJECTS)
@@ -32,7 +34,6 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-all : $(NAME)
 re : fclean all
 
 .PHONY: all clean fclean bonus re
