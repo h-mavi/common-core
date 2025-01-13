@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/10 16:51:17 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:18:48 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,11 @@ typedef struct	s_vars
 int	close_with_x(t_vars *info);
 int	close_with_esc(int keycode, t_vars *info);
 int	map_gen(t_vars *info);
+int	how_many_cl(void);
+int	map_pars(t_vars *info);
+int	check_char(char **map);
+int	check_wall(char **map);
+int	get_h(char **map);
+int	get_l(char **map);
 
 #endif

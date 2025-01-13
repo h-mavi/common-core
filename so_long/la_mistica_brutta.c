@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   la_mistica_brutta.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:29:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/10 12:00:02 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:14:54 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // {
 // 	if (keycode == 65307)
 //     {
-// 		printf("Keycode: %d\n", keycode);
+// 		ft_printf("Keycode: %d\n", keycode);
 // 		mlx_destroy_window(vars->mlx, vars->win);
 //     }
 // 	return (0);

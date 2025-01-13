@@ -6,13 +6,13 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/13 08:42:10 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/13 12:27:02 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = win.c so_long_utils.c
+SOURCES = win.c so_long_utils.c error_map.c
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -Ilibft -Iprintf

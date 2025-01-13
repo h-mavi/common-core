@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/13 09:12:22 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:20:01 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ int	how_many_cl(void)
 	return(index);
 }
 
+
+int	map_pars(t_vars *info)
+{
+	if(!check_char(info->map) || !check_wall(info->map))
+		return(0);
+	return(1);
+}
+
 int	map_gen(t_vars *info)
 {
 	int		i;
@@ -86,5 +94,7 @@ int	map_gen(t_vars *info)
 		i++;
 	}
 	close(fd);
-	return (0);
+	if(!map_pars(info))
+		return(0);
+	return (1);
 }
