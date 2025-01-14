@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/14 10:05:52 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:16:06 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,13 @@ int	close_with_x(t_vars *info)
 	exit (0);
 }
 
-int	how_many_cl(void)
-{
-	int		index;
-	int		fd;
-	char	*line;
-
-	index = 1;
-	fd = open("map.ber", O_RDONLY);
-	if (fd < 0)
-		return (1);
-	line = get_next_line(fd);
-	while(line)
-	{
-		free(line);
-		line = get_next_line(fd);
-		index++;
-	}
-	close(fd);
-	return(index);
-}
-
-
 int	map_pars(t_vars *info)
 {
 	if(!check_char(info->map))
 		return(0);
 	if(!check_wall(info->map))
+		return(0);
+	if(!check_if_atleast(info->map))
 		return(0);
 	return(1);
 }
@@ -91,7 +71,7 @@ int	map_gen(t_vars *info)
 		return(0);
 	while(line)
 	{
-		info->map[i] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+		info->map[i] = ft_calloc(ft_strlen(line), sizeof(char));
 		ft_strlcpy(info->map[i], line, ft_strlen(line) + 1);
 		free(line);
 		line = get_next_line(fd);

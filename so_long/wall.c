@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:55:30 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/14 11:36:50 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:16:12 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,46 @@ int	check_floor_ceiling(char **map, int	x, int y)
 	return (1);
 }
 
-int	check_if_rectangular(char **map, size_t x, size_t y)
+int	check_precise(char **map, char c)
 {
-	size_t	i;
+	int	i;
+	int	x;
+	int	count;
 
 	i = 0;
-	while(map[++i] != NULL && i < y)
+	x = 0;
+	count = 0;
+	while(map[i])
 	{
-		if(x != (ft_strlen(map[i]) - 2))
+		while(map[i][x])
 		{
-			ft_printf("Error\n[wall is not rectangular]");
-			return(0);
+			if(map[i][x] == c)
+				count++;
+			x++;
 		}
+		x = 0;
+		i++;
 	}
-	if(x != (ft_strlen(map[y]) - 1))
+	return(count);
+}
+
+int	how_many_cl(void)
+{
+	int		index;
+	int		fd;
+	char	*line;
+
+	index = 1;
+	fd = open("map.ber", O_RDONLY);
+	if (fd < 0)
+		return (1);
+	line = get_next_line(fd);
+	while(line)
 	{
-		ft_printf("Error\n[wall is not rectangular]");
-		return(0);
+		free(line);
+		line = get_next_line(fd);
+		index++;
 	}
-	return(1);
+	close(fd);
+	return(index);
 }
