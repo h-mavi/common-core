@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/13 11:18:48 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:26:19 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	how_many_cl(void);
 int	map_pars(t_vars *info);
 int	check_char(char **map);
 int	check_wall(char **map);
+int	check_floor_ceiling(char **map, int	x, int y);
+int	check_if_rectangular(char **map, size_t x, size_t y);
 int	get_h(char **map);
 int	get_l(char **map);
 

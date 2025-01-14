@@ -6,13 +6,13 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/13 12:27:02 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/14 09:57:13 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = win.c so_long_utils.c error_map.c
+SOURCES = win.c so_long_utils.c error_map.c wall.c
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -Ilibft -Iprintf
@@ -41,7 +41,6 @@ exe : $(NAME)
 
 clean:
 	@echo Cleaning...
-	@make clean -C minilibx-linux
 	@make clean -C libft
 	@make clean -C printf
 	@rm -f $(OBJ)

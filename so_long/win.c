@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:57:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/13 10:33:29 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/14 08:45:20 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ int	main(void)
 	mlx_hook(info.win, 17, 1L << 0, close_with_x, &info);
 	mlx_hook(info.win, 2, 1L << 0, close_with_esc, &info);
 	mlx_loop(info.mlx);
+	return(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/13 11:20:01 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:05:52 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	how_many_cl(void)
 
 int	map_pars(t_vars *info)
 {
-	if(!check_char(info->map) || !check_wall(info->map))
+	if(!check_char(info->map))
+		return(0);
+	if(!check_wall(info->map))
 		return(0);
 	return(1);
 }
@@ -85,6 +87,8 @@ int	map_gen(t_vars *info)
 	info->map = ft_calloc(index, sizeof(char *));
 	fd = open("map.ber", O_RDONLY);
 	line = get_next_line(fd);
+	if(fd < 0 || !line)
+		return(0);
 	while(line)
 	{
 		info->map[i] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
