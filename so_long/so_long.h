@@ -6,14 +6,14 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/14 16:02:20 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:06:09 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 200
+# define HEIGHT 200
 # include "./printf/ft_printf.h"
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
@@ -27,11 +27,16 @@ typedef struct	s_vars
 	void	*mlx;
 	void	*win;
 	char    **map;
+	void	*img_player;
+	void	*img_end;
+	void	*img_coin;
 }       t_vars;
 
+int	start(char *file);
+int	check_file_valid(char *file);
 int	close_with_x(t_vars *info);
 int	close_with_esc(int keycode, t_vars *info);
-int	map_gen(t_vars *info);
+int	map_gen(t_vars *info, char *file);
 int	how_many_cl(void);
 int	map_pars(t_vars *info);
 int	check_char(char **map);

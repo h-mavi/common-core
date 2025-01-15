@@ -6,11 +6,32 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:55:30 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/14 16:16:12 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:51:07 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	how_many_cl(void)
+{
+	int		index;
+	int		fd;
+	char	*line;
+
+	index = 1;
+	fd = open("map.ber", O_RDONLY);
+	if (fd < 0)
+		return (1);
+	line = get_next_line(fd);
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		index++;
+	}
+	close(fd);
+	return(index);
+}
 
 int	get_l(char **map)
 {
@@ -84,23 +105,3 @@ int	check_precise(char **map, char c)
 	return(count);
 }
 
-int	how_many_cl(void)
-{
-	int		index;
-	int		fd;
-	char	*line;
-
-	index = 1;
-	fd = open("map.ber", O_RDONLY);
-	if (fd < 0)
-		return (1);
-	line = get_next_line(fd);
-	while(line)
-	{
-		free(line);
-		line = get_next_line(fd);
-		index++;
-	}
-	close(fd);
-	return(index);
-}

@@ -6,21 +6,20 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/14 15:10:44 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/15 17:00:18 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = win.c so_long_utils.c error_map.c wall.c
+SOURCES = main.c so_long_utils.c error_map.c check_map.c
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -Ilibft -Iprintf
 MINILBX = -Lminilibx-linux -lmlx -Llibft -Lprintf -lXext -lX11
-#-Lminilibx-linux -lmlx -Llibft -Lprintf -lftprintf -lft -lXext -lX11
 OBJ = $(SOURCES:.c=.o)
 
-all : 
+all :
 	make libft
 	make printf
 	make minilbx
@@ -37,7 +36,7 @@ $(NAME): $(OBJ)
 exe : $(NAME)
 	@echo Executing...
 	@clear
-	@./$(NAME)
+	@./$(NAME) map.ber
 
 clean:
 	@echo Cleaning...
