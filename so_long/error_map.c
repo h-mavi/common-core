@@ -6,11 +6,30 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:45:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/14 16:04:25 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:06:51 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	check_file_valid(char *file)
+{
+	int	i;
+	char *str;
+
+	i = 0;
+	str = ft_strchr(file, '.');
+	if(!str)
+	{
+		ft_printf("Error\n[invalid map file]\nwhat da fuck is <%s>?", file);
+		return (0);
+	}
+	if (str[0] == '.' && str[1] == 'b' && str[2] == 'e' && str[3] == 'r' \
+	&& str[4] == '\0')
+		return(1);
+	ft_printf("Error\n[invalid map file]\nwhat da fuck is <%s>?", file);
+	return (0);
+}
 
 int	check_char(char **map)
 {

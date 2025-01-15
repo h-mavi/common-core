@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/15 17:00:18 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/15 17:07:47 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ clean:
 	@make clean -C printf
 	@rm -f $(OBJ)
 
-fclean:
+fclean: clean
 	@echo fcking Cleaning...
 	@make fclean -C libft
 	@make fclean -C printf
@@ -53,10 +53,6 @@ fclean:
 printf:
 	@echo Compiling Printf...
 	@make -C printf/
-
-minilbx:
-	@echo Compiling Minilibix
-	@make -C minilibx-linux
 
 libft:
 	@echo Compiling Libft

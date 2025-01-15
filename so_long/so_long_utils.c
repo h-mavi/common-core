@@ -6,26 +6,11 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/15 16:53:15 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:04:38 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	check_file_valid(char *file)
-{
-	int	i;
-	char *str;
-
-	i = 0;
-	str = ft_strchr(file, '.');
-	if(!str)
-		return (0);
-	if (str[0] == '.' && str[1] == 'b' && str[2] == 'e' && str[3] == 'r' \
-	&& str[4] == '\0')
-		return(1);
-	return (0);
-}
 
 int	map_gen(t_vars *info, char *file)
 {
