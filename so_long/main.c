@@ -6,11 +6,26 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:57:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/16 12:10:13 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:39:19 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	win_command(int keycode, t_vars *info)
+{
+	if(keycode == 119) //w
+		up(info);
+	else if(keycode == 97) //a
+		left(info);
+	else if(keycode == 115) //s
+		down(info);
+	else if(keycode == 100) //d
+		right(info);
+	else if(keycode == 65307)
+		close_with_x(info);
+	return(1);
+}
 
 void	put_img_in_win(t_vars *info, int x, int y)
 {
@@ -62,18 +77,18 @@ int	start(t_vars info)
 	info.win = mlx_new_window(info.mlx, ((info.num_lines + 1) * MAP), \
 	((info.num_col + 1) * MAP), "lil hooman");
 	info.img_player = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/frisk_player.xpm", &i, &i);
+	"./sprites/player_frisk_32x32.xpm", &i, &i);
 	info.img_end = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/save_end.xpm", &i, &i);
+	"./sprites/end_save_32x32.xpm", &i, &i);
 	info.img_coin = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/coin_hear_shape_obj.xpm", &i, &i);
+	"./sprites/coin_heartshapeobject_32x32.xpm", &i, &i);
 	info.img_wall = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/wall_32x32.xpm", &i, &i);
+	"./sprites/wall_stone_32x32.xpm", &i, &i);
 	info.img_floor = mlx_xpm_file_to_image(info.mlx, \
 	"./sprites/floor0_32x32.xpm", &i, &i);
 	lets_print(&info);
+	mlx_key_hook(info.win, win_command, &info);
 	mlx_hook(info.win, 17, 1L << 0, close_with_x, &info);
-	mlx_hook(info.win, 2, 1L << 0, close_with_esc, &info);
 	mlx_loop(info.mlx);
 	return(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:45:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/16 11:05:38 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:24:37 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_wall(char **map, t_vars *info)
 	return (1);
 }
 
-int	check_if_atleast(char **map)
+int	check_if_atleast(char **map, t_vars *info)
 {
 	char	P;
 	char	E;
@@ -122,6 +122,7 @@ int	check_if_atleast(char **map)
 	P = check_precise(map, P);
 	E = check_precise(map, E);
 	C = check_precise(map, C);
+	info->coin_count = C;
 	if (P != 1 || E != 1 || C <= 0)
 	{
 		ft_printf("Error\n[too few or too many characters]");
