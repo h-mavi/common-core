@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/15 17:07:47 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/16 11:58:25 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ OBJ = $(SOURCES:.c=.o)
 all :
 	make libft
 	make printf
-	make minilbx
 	make $(NAME)
 	make exe
 

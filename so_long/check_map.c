@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall.c                                             :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:55:30 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/15 16:51:07 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:20:03 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	how_many_cl(void)
+int	how_many_cl(char *file)
 {
 	int		index;
 	int		fd;
 	char	*line;
 
 	index = 1;
-	fd = open("map.ber", O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	line = get_next_line(fd);

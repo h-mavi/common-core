@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:45:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/15 17:06:51 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:05:38 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	check_file_valid(char *file)
 	char *str;
 
 	i = 0;
+	if(!file)
+	{
+		ft_printf("Error\n[no map]");
+		return (0);
+	}
 	str = ft_strchr(file, '.');
 	if(!str)
 	{
@@ -78,7 +83,7 @@ int	check_if_rectangular(char **map, size_t x, size_t y)
 	return(1);
 }
 
-int	check_wall(char **map)
+int	check_wall(char **map, t_vars *info)
 {
 	size_t	i;
 	size_t	x;
@@ -86,7 +91,9 @@ int	check_wall(char **map)
 
 	i = 1;
 	x = get_l(map);
-	y = get_h(map); 
+	y = get_h(map);
+	info->num_lines = x;
+	info->num_col = y;
 	if (!check_if_rectangular(map, x, y))
 		return(0);
 	while(map[i] && i < y)

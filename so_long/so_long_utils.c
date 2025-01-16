@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/15 17:04:38 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:19:45 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	map_gen(t_vars *info, char *file)
 	int		fd;
 
 	i = 0;
-	index = how_many_cl();
+	index = how_many_cl(file);
 	info->map = ft_calloc(index, sizeof(char *));
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
@@ -44,7 +44,7 @@ int	map_pars(t_vars *info)
 {
 	if(!check_char(info->map))
 		return(0);
-	if(!check_wall(info->map))
+	if(!check_wall(info->map, info))
 		return(0);
 	if(!check_if_atleast(info->map))
 		return(0);
