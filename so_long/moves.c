@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:51:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/16 17:41:44 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:28:39 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ int up(t_vars *info)
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
-	if(info->map[y - 1][x] == 'C' || info->map[y - 1][x] == '0')
+	if(info->map[y - 1][x] == 'C' || info->map[y - 1][x] == '0'\
+	|| info->map[y - 1][x] == 'E')
 	{
 		if (info->map[y - 1][x] == 'C')
 			info->coin_count--;
 		if (info->map[y - 1][x] == 'E' && info->coin_count == 0)
-			return(1);//funzione che attiva end e finisca il gioco
+			close_with_x(info);
 		else if(info->map[y - 1][x] == 'E' && info->coin_count != 0)
 			return(0);
 		info->map[y - 1][x] = 'P';
@@ -73,12 +74,13 @@ int down(t_vars *info)
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
-	if(info->map[y + 1][x] == 'C' || info->map[y + 1][x] == '0')
+	if(info->map[y + 1][x] == 'C' || info->map[y + 1][x] == '0'\
+	|| info->map[y + 1][x] == 'E')
 	{
 		if (info->map[y + 1][x] == 'C')
 			info->coin_count--;
 		if (info->map[y + 1][x] == 'E' && info->coin_count == 0)
-			return(1);//funzione che attiva end e finisca il gioco
+			close_with_x(info);
 		else if(info->map[y + 1][x] == 'E' && info->coin_count != 0)
 			return(0);
 		info->map[y + 1][x] = 'P';
@@ -100,12 +102,13 @@ int left(t_vars *info)
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
-	if(info->map[y][x - 1] == 'C' || info->map[y][x  - 1] == '0')
+	if(info->map[y][x - 1] == 'C' || info->map[y][x  - 1] == '0'\
+	|| info->map[y][x  - 1] == 'E')
 	{
 		if (info->map[y][x - 1] == 'C')
 			info->coin_count--;
 		if (info->map[y][x - 1] == 'E' && info->coin_count == 0)
-			return(1);//funzione che attiva end e finisca il gioco
+			close_with_x(info);
 		else if(info->map[y][x - 1] == 'E' && info->coin_count != 0)
 			return(0);
 		info->map[y][x - 1] = 'P';
@@ -127,12 +130,13 @@ int right(t_vars *info)
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
-	if(info->map[y][x + 1] == 'C' || info->map[y][x  + 1] == '0')
+	if(info->map[y][x + 1] == 'C' || info->map[y][x  + 1] == '0'\
+	|| info->map[y][x  + 1] == 'E')
 	{
 		if (info->map[y][x + 1] == 'C')
 			info->coin_count--;
 		if (info->map[y][x + 1] == 'E' && info->coin_count == 0)
-			return(1);//funzione che attiva end e finisca il gioco
+			close_with_x(info);
 		else if(info->map[y][x + 1] == 'E' && info->coin_count != 0)
 			return(0);
 		info->map[y][x + 1] = 'P';

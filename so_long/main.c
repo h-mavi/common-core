@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:57:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/16 16:39:19 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:36:17 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ int	start(t_vars info)
 	info.win = mlx_new_window(info.mlx, ((info.num_lines + 1) * MAP), \
 	((info.num_col + 1) * MAP), "lil hooman");
 	info.img_player = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/player_frisk_32x32.xpm", &i, &i);
+	"./textures/player_frisk_32x32.xpm", &i, &i);
 	info.img_end = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/end_save_32x32.xpm", &i, &i);
+	"./textures/end_save_32x32.xpm", &i, &i);
 	info.img_coin = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/coin_heartshapeobject_32x32.xpm", &i, &i);
+	"./textures/coin_heartshapeobject_32x32.xpm", &i, &i);
 	info.img_wall = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/wall_stone_32x32.xpm", &i, &i);
+	"./textures/wall_stone_32x32.xpm", &i, &i);
 	info.img_floor = mlx_xpm_file_to_image(info.mlx, \
-	"./sprites/floor0_32x32.xpm", &i, &i);
+	"./textures/floor0_32x32.xpm", &i, &i);
 	lets_print(&info);
 	mlx_key_hook(info.win, win_command, &info);
 	mlx_hook(info.win, 17, 1L << 0, close_with_x, &info);
