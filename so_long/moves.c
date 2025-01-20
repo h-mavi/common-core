@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:51:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/17 09:28:39 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 08:52:01 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int up(t_vars *info)
 			return(0);
 		info->map[y - 1][x] = 'P';
 		info->map[y][x] = '0';
-		mlx_put_image_to_window(info->mlx, info->win, info->img_player, \
+		mlx_put_image_to_window(info->mlx, info->win, info->img_player_back, \
 		x * MAP, (y - 1) * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
@@ -85,7 +85,7 @@ int down(t_vars *info)
 			return(0);
 		info->map[y + 1][x] = 'P';
 		info->map[y][x] = '0';
-		mlx_put_image_to_window(info->mlx, info->win, info->img_player, \
+		mlx_put_image_to_window(info->mlx, info->win, info->img_player_front, \
 		x * MAP, (y + 1) * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
@@ -113,7 +113,7 @@ int left(t_vars *info)
 			return(0);
 		info->map[y][x - 1] = 'P';
 		info->map[y][x] = '0';
-		mlx_put_image_to_window(info->mlx, info->win, info->img_player, \
+		mlx_put_image_to_window(info->mlx, info->win, info->img_player_left, \
 		(x - 1) * MAP, y * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
@@ -141,7 +141,7 @@ int right(t_vars *info)
 			return(0);
 		info->map[y][x + 1] = 'P';
 		info->map[y][x] = '0';
-		mlx_put_image_to_window(info->mlx, info->win, info->img_player, \
+		mlx_put_image_to_window(info->mlx, info->win, info->img_player_right, \
 		(x + 1) * MAP, y * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);

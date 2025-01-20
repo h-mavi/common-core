@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/17 09:14:05 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 09:53:51 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	map_gen(t_vars *info, char *file)
 		i++;
 	}
 	close(fd);
-	if(!map_pars(info))
+	if(!map_pars(info, file))
 		return(0);
 	return (1);
 }
 
-int	map_pars(t_vars *info)
+int	map_pars(t_vars *info, char *file)
 {
 	if(!check_char(info->map))
 		return(0);
@@ -48,6 +48,26 @@ int	map_pars(t_vars *info)
 		return(0);
 	if(!check_if_atleast(info->map, info))
 		return(0);
+	if(!check_path(info, file))
+	{
+		ft_printf("Error\n[invalid path]\nno possible path");
+		return(0);
+	}
+	return(1);
+}
+
+int	win_command(int keycode, t_vars *info)
+{
+	if(keycode == 119) //w
+		up(info);
+	else if(keycode == 97) //a
+		left(info);
+	else if(keycode == 115) //s
+		down(info);
+	else if(keycode == 100) //d
+		right(info);
+	else if(keycode == 65307)
+		close_with_x(info);
 	return(1);
 }
 
@@ -61,7 +81,10 @@ int	close_with_x(t_vars *info)
 		free(info->map[i++]);
 	free(info->map);
 	mlx_destroy_image(info->mlx, info->img_coin);
-	mlx_destroy_image(info->mlx, info->img_player);
+	mlx_destroy_image(info->mlx, info->img_player_front);
+	mlx_destroy_image(info->mlx, info->img_player_back);
+	mlx_destroy_image(info->mlx, info->img_player_left);
+	mlx_destroy_image(info->mlx, info->img_player_right);
 	mlx_destroy_image(info->mlx, info->img_end);
 	mlx_destroy_image(info->mlx, info->img_wall);
 	mlx_destroy_image(info->mlx, info->img_floor);

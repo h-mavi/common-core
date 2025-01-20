@@ -6,13 +6,13 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/17 09:34:53 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/20 09:52:34 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = main.c so_long_utils.c error_map.c check_map.c moves.c
+SOURCES = main.c so_long_utils.c error_map.c check_map.c moves.c path_finder.c
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -Ilibft -Iprintf
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 exe : $(NAME)
 	@echo Executing...
 	@clear
-	@./$(NAME) maps/sergio.ber
+	@./$(NAME) maps/map.ber
 
 clean:
 	@echo Cleaning...
@@ -56,6 +56,7 @@ printf:
 libft:
 	@echo Compiling Libft
 	@make -C libft/
+
 
 .PHONY: all exe clean fclean printf libft
 .SILENT:
