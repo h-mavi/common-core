@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/20 09:52:34 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/20 10:30:44 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 exe : $(NAME)
 	@echo Executing...
 	@clear
-	@./$(NAME) maps/map.ber
+	@./$(NAME) maps/map2.ber
 
 clean:
 	@echo Cleaning...
@@ -57,6 +57,14 @@ libft:
 	@echo Compiling Libft
 	@make -C libft/
 
+norminette:
+	@norminette check_map.c
+	@norminette error_map.c
+	@norminette main.c
+	@norminette moves.c
+	@norminette path_finder.c
+	@norminette so_long_utils.c
+	norminette so_long.h
 
-.PHONY: all exe clean fclean printf libft
+.PHONY: all exe clean fclean printf libft norminette
 .SILENT:

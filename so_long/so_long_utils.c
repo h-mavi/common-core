@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 09:53:51 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:30:23 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	map_gen(t_vars *info, char *file)
 	info->map = ft_calloc(index, sizeof(char *));
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
-	if(fd < 0 || !line)
-		return(0);
-	while(line)
+	if (fd < 0 || !line)
+		return (0);
+	while (line)
 	{
 		info->map[i] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		ft_strlcpy(info->map[i], line, ft_strlen(line) + 1);
@@ -35,40 +35,40 @@ int	map_gen(t_vars *info, char *file)
 		i++;
 	}
 	close(fd);
-	if(!map_pars(info, file))
-		return(0);
+	if (!map_pars(info, file))
+		return (0);
 	return (1);
 }
 
 int	map_pars(t_vars *info, char *file)
 {
-	if(!check_char(info->map))
-		return(0);
-	if(!check_wall(info->map, info))
-		return(0);
-	if(!check_if_atleast(info->map, info))
-		return(0);
-	if(!check_path(info, file))
+	if (!check_char(info->map))
+		return (0);
+	if (!check_wall(info->map, info))
+		return (0);
+	if (!check_if_atleast(info->map, info))
+		return (0);
+	if (!check_path(info, file))
 	{
 		ft_printf("Error\n[invalid path]\nno possible path");
-		return(0);
+		return (0);
 	}
-	return(1);
+	return (1);
 }
 
 int	win_command(int keycode, t_vars *info)
 {
-	if(keycode == 119) //w
+	if (keycode == 119)
 		up(info);
-	else if(keycode == 97) //a
+	else if (keycode == 97)
 		left(info);
-	else if(keycode == 115) //s
+	else if (keycode == 115)
 		down(info);
-	else if(keycode == 100) //d
+	else if (keycode == 100)
 		right(info);
-	else if(keycode == 65307)
+	else if (keycode == 65307)
 		close_with_x(info);
-	return(1);
+	return (1);
 }
 
 int	close_with_x(t_vars *info)
@@ -77,7 +77,7 @@ int	close_with_x(t_vars *info)
 
 	ft_printf("Bye Bye");
 	i = 0;
-	while(info->map[i])
+	while (info->map[i])
 		free(info->map[i++]);
 	free(info->map);
 	mlx_destroy_image(info->mlx, info->img_coin);

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:55:30 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/16 11:20:03 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:15:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	how_many_cl(char *file)
 	if (fd < 0)
 		return (1);
 	line = get_next_line(fd);
-	while(line)
+	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
 		index++;
 	}
 	close(fd);
-	return(index);
+	return (index);
 }
 
 int	get_l(char **map)
@@ -40,17 +40,17 @@ int	get_l(char **map)
 
 	i = 0;
 	x = 0;
-	if(!map || !map[i])
-		return(0);
-	while((map[i][x] != '\0' || map[i][x] != '\n') && map[i][x])
+	if (!map || !map[i])
+		return (0);
+	while ((map[i][x] != '\0' || map[i][x] != '\n') && map[i][x])
 		x++;
-	while(map[i])
+	while (map[i])
 	{
-		if(map[i][0] == '\n' || map[i][0] == '\0')
-			return(0);
+		if (map[i][0] == '\n' || map[i][0] == '\0')
+			return (0);
 		i++;
 	}
-	return(x - 2); //compenso che gli indici iniziano da 0 e il \0
+	return (x - 2);
 }
 
 int	get_h(char **map)
@@ -60,22 +60,22 @@ int	get_h(char **map)
 	y = 0;
 	if (!map)
 		return (0);
-	while(map[y] != NULL)
+	while (map[y] != NULL)
 		y++;
-	return(y - 1); //compenso che gli indici iniziano da 0
+	return (y - 1);
 }
 
-int	check_floor_ceiling(char **map, int	x, int y)
+int	check_floor_ceiling(char **map, int x, int y)
 {
 	int	i;
-	
+
 	i = 0;
-	while(map[0] && map[y] && i <= x)
+	while (map[0] && map[y] && i <= x)
 	{
-		if(map[0][i] != '1' || map[y][i] != '1')
+		if (map[0][i] != '1' || map[y][i] != '1')
 		{
 			ft_printf("Error\n[map wall] type 2\ninvalid floor and ceiling");
-			return(0);
+			return (0);
 		}
 		i++;
 	}
@@ -91,17 +91,16 @@ int	check_precise(char **map, char c)
 	i = 0;
 	x = 0;
 	count = 0;
-	while(map[i])
+	while (map[i])
 	{
-		while(map[i][x])
+		while (map[i][x])
 		{
-			if(map[i][x] == c)
+			if (map[i][x] == c)
 				count++;
 			x++;
 		}
 		x = 0;
 		i++;
 	}
-	return(count);
+	return (count);
 }
-
