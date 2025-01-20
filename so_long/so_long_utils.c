@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:44:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:30:23 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:51:27 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,26 @@ int	close_with_x(t_vars *info)
 	free(info->mlx);
 	exit (0);
 }
+
+// void print_matrix(t_vars *info, char **map)
+// {
+// 	int j;
+// 	int i;
+// 	int len;
+
+// 	j = 0;
+// 	len = get_h(info->map);
+// 	ft_printf("matrix: \n");
+// 	while (j < len + 1)
+// 	{
+// 		i = 0;
+// 		while (i < (int)ft_strlen(map[0]))
+// 		{
+// 			ft_printf("%c ", map[j][i]);
+// 			i++;
+// 		}
+// 		ft_printf("\n");
+// 		j++;
+// 	}
+// 	ft_printf("\n");
+// }

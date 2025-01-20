@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:20:19 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/20 10:30:44 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/20 11:56:41 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 exe : $(NAME)
 	@echo Executing...
 	@clear
-	@./$(NAME) maps/map2.ber
+	@./$(NAME) maps/mapboh.ber
 
 clean:
 	@echo Cleaning...

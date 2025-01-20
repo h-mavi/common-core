@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:09:57 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:29:19 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:54:54 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@ int	free_copy(t_vars *info)
 	return (1);
 }
 
-int	flood_fill(char **map_copy, int x, int y)
+void	flood_fill(t_vars *info, int x, int y)
 {
-	if ((map_copy[y][x] == '1') || \
-	(map_copy[y][x] == 'x'))
-		return (0);
-	map_copy[y][x] = 'x';
-	flood_fill(map_copy, (x + 1), y);
-	flood_fill(map_copy, (x - 1), y);
-	flood_fill(map_copy, x, (y + 1));
-	flood_fill(map_copy, x, (y - 1));
-	return (1);
+	if ((info->map_copy[y][x] == '1') || \
+	(info->map_copy[y][x] == 'x') || (info->map_copy[y][x] == 'E'))
+		return ;
+	info->map_copy[y][x] = 'x';
+	flood_fill(info, (x + 1), y);
+	flood_fill(info, (x - 1), y);
+	flood_fill(info, x, (y + 1));
+	flood_fill(info, x, (y - 1));
 }
 
 int	check_path(t_vars *info, char *file)
@@ -72,7 +71,7 @@ int	check_path(t_vars *info, char *file)
 	where_is_player(info);
 	x = info->x;
 	y = info->y;
-	flood_fill(info->map_copy, x, y);
+	flood_fill(info, x, y);
 	y = 0;
 	while (info->map_copy[y])
 	{
@@ -80,7 +79,8 @@ int	check_path(t_vars *info, char *file)
 		while (info->map_copy[y][x])
 		{
 			if (info->map_copy[y][x] != '1' && info->map_copy[y][x] != '0'\
-			&& info->map_copy[y][x] != 'x' && info->map_copy[y][x] != '\n')
+			&& info->map_copy[y][x] != 'x' && info->map_copy[y][x] != '\n' \
+			&& info->map_copy[y][x] == 'C')
 				return (0);
 			x++;
 		}

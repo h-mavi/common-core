@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:33:06 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:52:46 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_vars
 	int		num_lines;
 	int		x;
 	int		y;
+	int		x_end;
+	int		y_end;
 	void	*img_player_front;
 	void	*img_player_back;
 	void	*img_player_left;
@@ -78,7 +80,9 @@ int		right(t_vars *info);
 //in path_finder.c
 int		map_copy(t_vars *info, char *file);
 int		free_copy(t_vars *info);
-int		flood_fill(char **map_copy, int x, int y);
+void	flood_fill(t_vars *info, int x, int y);
 int		check_path(t_vars *info, char *file);
+
+// void print_matrix(t_vars *info, char **map);
 
 #endif
