@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:45:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:22:15 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:25:22 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ int	check_file_valid(char *file)
 {
 	int		i;
 	char	*str;
+	int		fd;
 
 	i = 0;
-	if (!file)
+	fd = open(file, O_RDONLY);
+	if (fd < 0 || !file)
 	{
+		close(fd);
 		ft_printf("Error\n[no map]");
 		return (0);
 	}
+	close(fd);
 	str = ft_strchr(file, '.');
 	if (!str)
 	{

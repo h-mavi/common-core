@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:57:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:23:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:24:21 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	main(int argc, char *argv[])
 	t_vars	info;
 
 	i = 0;
+	info.count_move = 0;
 	(void)argc;
 	if (!check_file_valid(argv[1]))
 		return (0);

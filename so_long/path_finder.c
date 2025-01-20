@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:09:57 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 11:54:54 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:22:51 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ int	free_copy(t_vars *info)
 void	flood_fill(t_vars *info, int x, int y)
 {
 	if ((info->map_copy[y][x] == '1') || \
-	(info->map_copy[y][x] == 'x') || (info->map_copy[y][x] == 'E'))
+	(info->map_copy[y][x] == 'x'))
 		return ;
+	if (info->map_copy[y][x] == 'E')
+	{
+		info->map_copy[y][x] = '1';
+		return ;
+	}
 	info->map_copy[y][x] = 'x';
 	flood_fill(info, (x + 1), y);
 	flood_fill(info, (x - 1), y);
@@ -78,9 +83,9 @@ int	check_path(t_vars *info, char *file)
 		x = 0;
 		while (info->map_copy[y][x])
 		{
-			if (info->map_copy[y][x] != '1' && info->map_copy[y][x] != '0'\
-			&& info->map_copy[y][x] != 'x' && info->map_copy[y][x] != '\n' \
-			&& info->map_copy[y][x] == 'C')
+			if ((info->map_copy[y][x] != '1' && info->map_copy[y][x] != '0'\
+			&& info->map_copy[y][x] != 'x' && info->map_copy[y][x] != '\n') \
+			|| info->map_copy[y][x] == 'C' || info->map_copy[y][x] == 'E')
 				return (0);
 			x++;
 		}

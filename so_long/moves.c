@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:51:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:27:00 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:22:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	up(t_vars *info)
 	int	y;
 	int	x;
 
-	ft_printf("Player presses W and goes up!\n");
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
@@ -61,6 +60,8 @@ int	up(t_vars *info)
 		x * MAP, (y - 1) * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
+		info->count_move = info->count_move + 1;
+		ft_printf("Move nb = %d\n", info->count_move);
 	}
 	return (1);
 }
@@ -70,7 +71,6 @@ int	down(t_vars *info)
 	int	y;
 	int	x;
 
-	ft_printf("Player presses S and goes down!\n");
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
@@ -89,6 +89,8 @@ int	down(t_vars *info)
 		x * MAP, (y + 1) * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
+		info->count_move = info->count_move + 1;
+		ft_printf("Move nb = %d\n", info->count_move);
 	}
 	return (1);
 }
@@ -98,7 +100,6 @@ int	left(t_vars *info)
 	int	y;
 	int	x;
 
-	ft_printf("Player presses A and goes left!\n");
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
@@ -117,6 +118,8 @@ int	left(t_vars *info)
 		(x - 1) * MAP, y * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
+		info->count_move = info->count_move + 1;
+		ft_printf("Move nb = %d\n", info->count_move);
 	}
 	return (1);
 }
@@ -126,7 +129,6 @@ int	right(t_vars *info)
 	int	y;
 	int	x;
 
-	ft_printf("Player presses D and goes right!\n");
 	where_is_player(info);
 	y = info->y;
 	x = info->x;
@@ -145,6 +147,8 @@ int	right(t_vars *info)
 		(x + 1) * MAP, y * MAP);
 		mlx_put_image_to_window(info->mlx, info->win, info->img_floor, \
 		x * MAP, y * MAP);
+		info->count_move = info->count_move + 1;
+		ft_printf("Move nb = %d\n", info->count_move);
 	}
 	return (1);
 }
