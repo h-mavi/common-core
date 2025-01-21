@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:55:30 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 10:15:15 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:18:04 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_floor_ceiling(char **map, int x, int y)
 	{
 		if (map[0][i] != '1' || map[y][i] != '1')
 		{
-			ft_printf("Error\n[map wall] type 2\ninvalid floor and ceiling");
+			ft_printf("Error\n[map wall] type 2\ninvalid floor or ceiling");
 			return (0);
 		}
 		i++;

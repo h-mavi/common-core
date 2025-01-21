@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:40:31 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 17:22:56 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:52:22 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_vars
 	int		num_lines;
 	int		x;
 	int		y;
-	int		count_move;
 	void	*img_player_front;
 	void	*img_player_back;
 	void	*img_player_left;
@@ -40,6 +39,7 @@ typedef struct s_vars
 	void	*img_coin;
 	void	*img_wall;
 	void	*img_floor;
+	int		count_move;
 	int		coin_count;
 }		t_vars;
 

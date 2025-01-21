@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:48:36 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/11 16:55:42 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:12:46 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ char	*get_next_line(int fd)
 	next = ft_prep(next);
 	return (end);
 }
-
 
 /* int main(void)
 {

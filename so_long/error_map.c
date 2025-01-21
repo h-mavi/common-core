@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:45:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/20 17:25:22 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:19:38 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_file_valid(char *file)
 	if (fd < 0 || !file)
 	{
 		close(fd);
-		ft_printf("Error\n[no map]");
+		ft_printf("Error\n[no map]\nwhat da fuck is <%s>?", file);
 		return (0);
 	}
 	close(fd);
