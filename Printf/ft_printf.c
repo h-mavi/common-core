@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 13:03:14 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/12/03 11:58:56 by mfanelli         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:23:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	ft_printf(const char *format, ...)
 	va_end (args);
 	return (len);
 }
+
 /* int	main(void)
 {
-	int	a = ft_printf(" ");
-	int	b = printf (" ");
-	printf ("\nLa lunghezza di ft_printf e' %d\n", a);
+	// int x = 1;
+	int	a = ft_printf(" %u \n", 4294967295);
+	int	b = printf (" %lu \n", 4294967295);
+	printf ("La lunghezza di ft_printf e' %d\n", a);
 	printf ("La lunghezza di printf e' %d\n", b);
 } */
