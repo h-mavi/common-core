@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 10:31:34 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/24 14:48:23 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/01/24 14:32:26 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/01/24 15:48:21 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_iswhitespace(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\f' \
-		|| c == '\v' || c == '\r')
-	{
-		return (1);
-	}
-	return (0);
-}
-
-int	ft_atoi(const char *str)
+long int	ft_atol(const char *str)
 {
 	int	i;
-	int	num;
+	long int	num;
 	int	sign;
 
 	num = 0;
@@ -42,29 +32,33 @@ int	ft_atoi(const char *str)
 	num = num * sign;
 	return (num);
 }
-/* int main(void)
+t_list	*ft_lstnew(int content)
 {
-	char *test_cases[] = {
-		"42",
-		"-42",
-		"  42",
-		"  \t  42",
-		"  -1234",
-		"+1234",
-		"0",
-		"-0",
-		"  \t +123abc",
-		"abc123",
-		"  +2147483647",
-		"  -2147483648", 
-		"  99999999999999", 
-		NULL
-	};
+	t_list	*new;
 
-	
-	for (int i = 0; test_cases[i] != NULL; i++) {
-		int result = ft_atoi(test_cases[i]);
-		int res = atoi(test_cases[i]);
-		printf("Input: \"%s\", ft_atoi: %d  %d\n", test_cases[i], result, res);
+	new = malloc(sizeof(t_list));
+	if (new == NULL)
+		return (NULL);
+	new->data = content;
+	new->next = NULL;
+	return (new);
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*ex;
+
+	ex = NULL;
+	if (new == NULL)
+		return ;
+	if (lst && lst[0])
+	{
+		ex = *lst;
+		while (ex->next != NULL)
+			ex = ex->next;
+		ex->next = new;
 	}
-} */
+	else
+		ex = new;
+	return ;
+}

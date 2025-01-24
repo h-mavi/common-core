@@ -6,35 +6,37 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/24 11:05:30 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:58:20 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, int *argv[])
+int	main(int argc, char *argv[])
 {
-	int	i;
-	int	x;
+	int		i;
+	int		num;
+	t_list	*head;
 
-	x = 1;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	head = NULL;
+	if (argc == 1 || (argc == 2 && ft_strlen(argv[1]) == 0))
 	{
-		if (sizeof(argv[i] != sizeof(int)))
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
+	else if (argc >= 2)
+	{
+		while(++i < argc)
 		{
-			ft_printf("Error\n");
-			return (0);
-		}
-		while(x < argc)
-		{
-			if (argv[i] == argv[x])
+			ft_printf("av[%d]: %s\n", i, argv[i]);
+			num = ft_atol(argv[i]);
+			if (num > 2147483647 || num < -2147483648)
 			{
-				ft_printf("Error\n");
+				ft_putstr_fd("Error\n", 2);
 				return (0);
 			}
-			x++;
+			ft_lstadd_back(&head, ft_lstnew(num));
 		}
-		i++;
 	}
 }
