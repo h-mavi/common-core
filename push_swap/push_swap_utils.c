@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:32:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 09:28:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:02:06 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,13 @@ t_list *args_fill_list(int	argc, char *argv[])
 		x = 0;
 		while (argv[i][x] != '\0')
 		{
-			if (argv[i][x] == '+' || argv[i][x] == '-')
+			if (x == 0 && (argv[i][0] == '+' || argv[i][0] == '-'))
 				x++;
 			if (!ft_isdigit(argv[i][x++]))
 				ft_exit();
 		}
 		num = ft_atol(argv[i]);
-		if (num > 2147483647 || num < -2147483648 || (num == 0 && \
-		ft_strlen(argv[i]) != 1))
+		if (num > 2147483647 || num < -2147483648)
 			ft_exit();
 		ft_lstadd_back(&head, ft_lstnew(num));
 		ft_printf("av[%d]: %d\n", i, num);
