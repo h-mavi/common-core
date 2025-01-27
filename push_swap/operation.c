@@ -6,9 +6,84 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:40:38 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/24 10:40:59 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:11:10 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	sa_swap_a(t_list *head_a)
+{
+	int		i;
+	t_list	*sort;
+
+	i = -1;
+	sort = head_a;
+	while (sort != NULL && ++i != -1)
+		sort = sort->next;
+	if (i < 2)
+		exit(0);
+	sort = head_a->next;
+	i = head_a->data;
+	head_a->data = sort->data;
+	sort->data = i;
+}
+
+void	sb_swap_b(t_list *head_b)
+{
+	int		i;
+	t_list	*sort;
+
+	i = -1;
+	sort = head_b;
+	while (sort != NULL && ++i != -1)
+		sort = sort->next;
+	if (i < 2)
+		exit(0);
+	sort = head_b->next;
+	i = head_b->data;
+	head_b->data = sort->data;
+	sort->data = i;
+}
+
+void	ss_swap_a_b(t_list *head_a, t_list *head_b)
+{
+	sa_swap_a(head_a);
+	sb_swap_b(head_b);
+}
+
+t_list	*pa_push_a(t_list **head_a, t_list *head_b)
+{
+	int		i;
+	t_list	*sort;
+
+	i = -1;
+	sort = head_b;
+	while (sort != NULL && ++i != -1)
+		sort = sort->next;
+	if (i == -1)
+		return (0);
+	ft_lstadd_front(head_a, ft_lstnew(head_b->data));
+	sort = head_b->next;
+	free(head_b);
+	head_b = sort;
+	return (head_b);
+}
+
+t_list	*pb_push_b(t_list *head_a, t_list **head_b)
+{
+	int		i;
+	t_list	*sort;
+
+	i = -1;
+	sort = head_a;
+	while (sort != NULL && ++i != -1)
+		sort = sort->next;
+	if (i == -1)
+		return (0);
+	ft_lstadd_front(head_b, ft_lstnew(head_a->data));
+	sort = head_a->next;
+	free(head_a);
+	head_a = sort;
+	return (head_a);
+}

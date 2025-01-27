@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:32:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 10:02:06 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:47:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ t_list *args_fill_list(int	argc, char *argv[])
 		if (num > 2147483647 || num < -2147483648)
 			ft_exit();
 		ft_lstadd_back(&head, ft_lstnew(num));
-		ft_printf("av[%d]: %d\n", i, num);
 	}
 	return (head);
 }
