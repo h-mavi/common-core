@@ -6,13 +6,13 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:45:58 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/24 15:16:58 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/27 09:26:37 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SOURCES = main.c push_swap_utils.c
+SOURCES = main.c push_swap_utils.c utils.c
 #operation.c
 
 CC = cc
