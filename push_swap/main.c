@@ -6,11 +6,17 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 10:39:10 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:45:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b)
+{
+	rra_reverse_rotate_a(head_a);
+	rrb_reverse_rotate_b(head_b);
+}
 
 void	print_lists(t_list *head_a, t_list *head_b)
 {
@@ -43,12 +49,6 @@ int	main(int argc, char *argv[])
 		head_a = args_fill_list(argc, argv);
 	if(!check_if_double(head_a))
 		ft_exit_free(head_a, head_b, -1);
-	print_lists(head_a, head_b);
-	pb_push_b(&head_a, &head_b);
-	pb_push_b(&head_a, &head_b);
-	print_lists(head_a, head_b);
-	pa_push_a(&head_a, &head_b);
-	pa_push_a(&head_a, &head_b);
-	print_lists(head_a, head_b);
+	
 	ft_exit_free(head_a, head_b, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:40:38 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 10:34:10 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:09:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sa_swap_a(t_list *head_a)
 	while (sort != NULL && ++i != -1)
 		sort = sort->next;
 	if (i < 2)
-		exit(0);
+		return ;
 	sort = head_a->next;
 	i = head_a->data;
 	head_a->data = sort->data;
@@ -39,7 +39,7 @@ void	sb_swap_b(t_list *head_b)
 	while (sort != NULL && ++i != -1)
 		sort = sort->next;
 	if (i < 2)
-		exit(0);
+		return ;
 	sort = head_b->next;
 	i = head_b->data;
 	head_b->data = sort->data;
@@ -54,40 +54,24 @@ void	ss_swap_a_b(t_list *head_a, t_list *head_b)
 
 void	pa_push_a(t_list **head_a, t_list **head_b)
 {
-	int		i;
 	t_list	*sort;
 
-	i = -1;
-	sort = *head_b;
-	while (sort != NULL && ++i != -1)
-		sort = sort->next;
-	if (i == -1)
+	if (*head_b == NULL)
 		return ;
 	sort = *head_b;
-	if ((*head_b)->next == NULL)
-		*head_b = NULL;
-	else
-		*head_b = (*head_b)->next;
+	*head_b = (*head_b)->next;
 	ft_lstadd_front(head_a, ft_lstnew(sort->data));
 	free(sort);
 }
 
 void	pb_push_b(t_list **head_a, t_list **head_b)
 {
-	int		i;
 	t_list	*sort;
 
-	i = -1;
-	sort = *head_a;
-	while (sort != NULL && ++i != -1)
-		sort = sort->next;
-	if (i == -1)
+	if (*head_a == NULL)
 		return ;
 	sort = *head_a;
-	if ((*head_a)->next == NULL)
-		*head_a = NULL;
-	else
-		*head_a = (*head_a)->next;
+	*head_a = (*head_a)->next;
 	ft_lstadd_front(head_b, ft_lstnew(sort->data));
 	free(sort);
 }

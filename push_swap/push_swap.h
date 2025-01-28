@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 10:01:24 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:46:03 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 }	t_list;
 
 //in main.c
+void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b);
 void	print_lists(t_list *head_a, t_list *head_b);
 
 //in push_swap_utils.c
@@ -55,7 +56,6 @@ void	rr_rotate_a_b(t_list **head_a, t_list **head_b);
 void	rra_reverse_rotate_a(t_list **head_a);
 void	rrb_reverse_rotate_b(t_list **head_b);
 
-//in operation_utils.c
-void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b);
+//in algorithm_1.c
 
 #endif
