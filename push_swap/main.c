@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 14:07:45 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:40:07 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,19 @@ int	main(int argc, char *argv[])
 	head_a = NULL;
 	head_b = NULL;
 	if (argc == 2 && ft_strlen(argv[1]) == 0)
-		ft_exit();
+		ft_error();
 	else if (argc == 2 && ft_strlen(argv[1]) > 0)
 		head_a = split_str(argv);
 	else if (argc > 2 || argc == 2)
 		head_a = args_fill_list(argc, argv);
 	if(!check_if_double(head_a))
-		ft_exit_free(head_a, head_b);
+		ft_exit_free(head_a, head_b, -1);
 	print_lists(head_a, head_b);
 	head_a = pb_push_b(head_a, &head_b);
+	head_a = pb_push_b(head_a, &head_b);
 	print_lists(head_a, head_b);
-	head_b = pa_push_a(&head_a, head_b);
+	ra_rotate_a(&head_a);
+	rb_rotate_b(&head_b);
 	print_lists(head_a, head_b);
-	ft_exit_free(head_a, head_b);
+	ft_exit_free(head_a, head_b, 0);
 }

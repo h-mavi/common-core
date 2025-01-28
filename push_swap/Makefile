@@ -6,13 +6,14 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:45:58 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/27 10:54:08 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/01/28 09:27:05 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SOURCES = main.c push_swap_utils.c utils.c operation.c
+SOURCES = main.c push_swap_utils.c utils.c operation.c still_operation.c \
+operation_utils.c
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -Ilibft -Iprintf -Llibft -Lprintf

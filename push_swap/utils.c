@@ -6,19 +6,19 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:22:41 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 12:17:00 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:05:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_exit()
+void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit (0);
 }
 
-void	ft_exit_free(t_list *head_a, t_list *head_b)
+void	ft_exit_free(t_list *head_a, t_list *head_b, int err)
 {
 	t_list	*sort;
 
@@ -34,15 +34,25 @@ void	ft_exit_free(t_list *head_a, t_list *head_b)
 		free(head_b);
 		head_b = sort;
 	}
-	ft_putstr_fd("Error\n", 2);
+	if (err == -1)
+		ft_error();
 	exit (0);
+}
+
+void	free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }
 
 t_list	*split_str(char *argv[])
 {
 	int		i;
-	int		x;
-	long	num;
+	long	x;
 	t_list	*head;
 	char	**save;
 
@@ -57,14 +67,20 @@ t_list	*split_str(char *argv[])
 			if (x == 0 && (save[i][0] == '+' || save[i][0] == '-'))
 				x++;
 			if(!ft_isdigit(save[i][x++]))
-				ft_exit();
+			{
+				free_array(save);
+				ft_exit_free(head, NULL, -1);
+			}
 		}
-		num = ft_atol(save[i]);
-		if (num > 2147483647 || num < -2147483648)
-			ft_exit();
-		ft_lstadd_back(&head, ft_lstnew(num));
+		x = ft_atol(save[i]);
+		if (x > 2147483647 || x < -2147483648)
+			{
+				free_array(save);
+				ft_exit_free(head, NULL, -1);
+			}
+		ft_lstadd_back(&head, ft_lstnew(x));
 	}
-	return (head);
+	return (free_array(save), head);
 }
 
 void	ft_lstadd_front(t_list **lst, t_list *new)

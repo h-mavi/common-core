@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 12:25:33 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:39:36 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int		check_if_double(t_list *head);
 t_list	*args_fill_list(int	argc, char *argv[]);
 
 //in utils.c
-void	ft_exit();
-void	ft_exit_free(t_list *head_a, t_list *head_b);
+void	ft_error(void);
+void	ft_exit_free(t_list *head_a, t_list *head_b, int err);
+void	free_array(char **array);
 t_list	*split_str(char *argv[]);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 
@@ -47,5 +48,14 @@ void	ss_swap_a_b(t_list *head_a, t_list *head_b);
 t_list	*pa_push_a(t_list **head_a, t_list *head_b);
 t_list	*pb_push_b(t_list *head_a, t_list **head_b);
 
+//in still_operation.c
+void	ra_rotate_a(t_list **head_a);
+void	rb_rotate_b(t_list **head_b);
+void	rr_rotate_a_b(t_list **head_a, t_list **head_b);
+void	rra_reverse_rotate_a(t_list **head_a);
+void	rrb_reverse_rotate_b(t_list **head_b);
+
+//in operation_utils.c
+void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b);
 
 #endif
