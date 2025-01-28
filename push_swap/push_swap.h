@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 09:39:36 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:01:24 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	sa_swap_a(t_list *head);
 void	sb_swap_b(t_list *head_b);
 void	ss_swap_a_b(t_list *head_a, t_list *head_b);
-t_list	*pa_push_a(t_list **head_a, t_list *head_b);
-t_list	*pb_push_b(t_list *head_a, t_list **head_b);
+void	pa_push_a(t_list **head_a, t_list **head_b);
+void	pb_push_b(t_list **head_a, t_list **head_b);
 
 //in still_operation.c
 void	ra_rotate_a(t_list **head_a);

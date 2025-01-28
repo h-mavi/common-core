@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:40:38 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/27 14:11:10 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:34:10 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,38 +52,42 @@ void	ss_swap_a_b(t_list *head_a, t_list *head_b)
 	sb_swap_b(head_b);
 }
 
-t_list	*pa_push_a(t_list **head_a, t_list *head_b)
+void	pa_push_a(t_list **head_a, t_list **head_b)
 {
 	int		i;
 	t_list	*sort;
 
 	i = -1;
-	sort = head_b;
+	sort = *head_b;
 	while (sort != NULL && ++i != -1)
 		sort = sort->next;
 	if (i == -1)
-		return (0);
-	ft_lstadd_front(head_a, ft_lstnew(head_b->data));
-	sort = head_b->next;
-	free(head_b);
-	head_b = sort;
-	return (head_b);
+		return ;
+	sort = *head_b;
+	if ((*head_b)->next == NULL)
+		*head_b = NULL;
+	else
+		*head_b = (*head_b)->next;
+	ft_lstadd_front(head_a, ft_lstnew(sort->data));
+	free(sort);
 }
 
-t_list	*pb_push_b(t_list *head_a, t_list **head_b)
+void	pb_push_b(t_list **head_a, t_list **head_b)
 {
 	int		i;
 	t_list	*sort;
 
 	i = -1;
-	sort = head_a;
+	sort = *head_a;
 	while (sort != NULL && ++i != -1)
 		sort = sort->next;
 	if (i == -1)
-		return (0);
-	ft_lstadd_front(head_b, ft_lstnew(head_a->data));
-	sort = head_a->next;
-	free(head_a);
-	head_a = sort;
-	return (head_a);
+		return ;
+	sort = *head_a;
+	if ((*head_a)->next == NULL)
+		*head_a = NULL;
+	else
+		*head_a = (*head_a)->next;
+	ft_lstadd_front(head_b, ft_lstnew(sort->data));
+	free(sort);
 }
