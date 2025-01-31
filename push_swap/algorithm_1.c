@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:24:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 10:46:36 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:01:11 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	is_it_sort(t_list *head_a)
 	while(tmp != NULL && tmp->next != NULL) 
 	{
 		if (tmp->data > (tmp->next)->data)
-			return (1);
+			return (0);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (1);
 }
 
 void	sorting(t_list **head_a, t_list **head_b, int len)

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:22:41 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 09:05:42 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:23:12 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,11 @@ t_list	*split_str(char *argv[])
 			if (x == 0 && (save[i][0] == '+' || save[i][0] == '-'))
 				x++;
 			if(!ft_isdigit(save[i][x++]))
-			{
-				free_array(save);
-				ft_exit_free(head, NULL, -1);
-			}
+				ft_out(save, head);
 		}
 		x = ft_atol(save[i]);
 		if (x > 2147483647 || x < -2147483648)
-			{
-				free_array(save);
-				ft_exit_free(head, NULL, -1);
-			}
+			ft_out(save, head);
 		ft_lstadd_back(&head, ft_lstnew(x));
 	}
 	return (free_array(save), head);

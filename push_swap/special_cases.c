@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:03:23 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 11:47:39 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:27:56 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	special_case_1(t_list **head_a)
 		tmp = tmp->next;
 	if (tmp->data > (tmp->next)->data)
 		rra_reverse_rotate_a(head_a, 1);
-	if (!is_it_sort(*head_a))
+	if (is_it_sort(*head_a))
 		return ;
 	special_case_1(head_a);
 	return ;
@@ -41,9 +41,30 @@ void	special_case_1(t_list **head_a)
 
 void	special_case_2(t_list **head_a,t_list **head_b)
 {
-	(void)head_a;
-	(void)head_b;
-	return ;
+	t_list	*tmp;
+
+	tmp = *head_a;
+	while(!must_be_smaller(head_a))
+	{
+		tmp = *head_a;
+		if((tmp->next)->data < tmp->data && (tmp->next)->data < \
+		((tmp->next)->next)->data && (tmp->next)->data < \
+		(((tmp->next)->next)->next)->data)
+			ra_rotate_a(head_a, 1);
+		else if((((tmp->next)->next)->next)->data < tmp->data && \
+		(((tmp->next)->next)->next)->data < (tmp->next)->data && \
+		(((tmp->next)->next)->next)->data < ((tmp->next)->next)->data)
+			rra_reverse_rotate_a(head_a, 1);
+		else
+			ra_rotate_a(head_a, 1);
+	}
+	if (is_it_sort(*head_a))
+		return ;
+	pb_push_b(head_a, head_b);
+	special_case_1(head_a);
+	pa_push_a(head_a, head_b);
+	if (is_it_sort(*head_a))
+		return ;
 }
 
 void	special_case_3(t_list **head_a,t_list **head_b)

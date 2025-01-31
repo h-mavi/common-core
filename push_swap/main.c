@@ -6,11 +6,28 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 11:00:07 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:04:09 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	must_be_smaller(t_list **head_a)
+{
+	int		smol;
+	t_list	*tmp;
+
+	tmp = *head_a;
+	smol = tmp->data;
+	tmp = tmp->next;
+	while(tmp)
+	{
+		if (smol> tmp->data)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
 
 void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b)
 {
@@ -66,7 +83,7 @@ int	main(int argc, char *argv[])
 		head_a = args_fill_list(argc, argv);
 	if(!check_if_double(head_a))
 		ft_exit_free(head_a, head_b, -1);
-	if (is_it_sort(head_a))
+	if (!is_it_sort(head_a))
 	{
 		ft_printf("Before sorting:\n");
 		print_lists(head_a, head_b);
@@ -74,6 +91,6 @@ int	main(int argc, char *argv[])
 		ft_printf("---------------------\nAfter sorting:\n");
 		print_lists(head_a, head_b);
 	}
-	if (!is_it_sort(head_a))
+	if (is_it_sort(head_a))
 		ft_exit_free(head_a, head_b, 0);
 }

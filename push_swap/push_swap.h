@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 11:06:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:22:40 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 }	t_list;
 
 //in main.c
+int		must_be_smaller(t_list **head_a);
 void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b);
 void	print_lists(t_list *head_a, t_list *head_b);
 int		ft_lslen(t_list *head_a);
@@ -42,6 +43,9 @@ void	ft_exit_free(t_list *head_a, t_list *head_b, int err);
 void	free_array(char **array);
 t_list	*split_str(char *argv[]);
 void	ft_lstadd_front(t_list **lst, t_list *new);
+
+//in bruh.c
+void	ft_out(char **save, t_list *head);
 
 //in operation.c
 void	sa_swap_a(t_list *head_a, int p);
