@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 15:04:09 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:44:23 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	must_be_smaller(t_list **head_a)
 	tmp = tmp->next;
 	while(tmp)
 	{
-		if (smol> tmp->data)
+		if (smol > tmp->data)
 			return (0);
 		tmp = tmp->next;
 	}
