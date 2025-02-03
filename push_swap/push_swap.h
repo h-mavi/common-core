@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/31 09:22:40 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:33:32 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ typedef struct s_list
 {
 	int				data;
 	struct s_list	*next;
+	int				up_mediana;
+	int				cur_position;
+	struct s_list	*target_node;
+	int				price;
+	int				is_cheapest;
 }	t_list;
 
 //in main.c
@@ -46,6 +51,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 
 //in bruh.c
 void	ft_out(char **save, t_list *head);
+t_list	*find_cheapest(t_list **head);
+void	finish_r(t_list **head, t_list *top_node, char	ls);
 
 //in operation.c
 void	sa_swap_a(t_list *head_a, int p);
@@ -62,6 +69,9 @@ void	rra_reverse_rotate_a(t_list **head_a, int p);
 void	rrb_reverse_rotate_b(t_list **head_b, int p);
 
 //in algorithm_1.c
+void	ft_move_node(t_list **head_a, t_list **head_b);
+void	check_cheapest(t_list **head_b);
+t_list	*smallest(t_list **head);
 int		is_it_sort(t_list *head_a);
 void	sorting(t_list **head_a, t_list **head_b, int len);
 
@@ -70,5 +80,12 @@ void	special_case_0(t_list **head_a);
 void	special_case_1(t_list **head_a);
 void	special_case_2(t_list **head_a,t_list **head_b);
 void	special_case_3(t_list **head_a,t_list **head_b);
+
+//in ft_algorithm.c
+void	set_position(t_list **head);
+void	set_target(t_list **head_a, t_list **head_b);
+void	set_prince(t_list **head_a, t_list **head_b);
+void	ft_prepare(t_list **head_a, t_list **head_b);
+void	algorithm(t_list **head_a, t_list **head_b);
 
 #endif

@@ -6,11 +6,62 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:24:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/29 15:01:11 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:49:40 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_move_node(t_list **head_a, t_list **head_b)
+{
+	t_list	*cheap;
+
+	cheap = find_cheapest(head_b);
+	if (cheap->up_mediana && cheap->target_node->up_mediana && \
+	cheap != *head_b && cheap->target_node != *head_a)
+		rr_rotate_a_b(head_a, head_b);
+	else if (!(cheap->up_mediana) && !(cheap->target_node->up_mediana))
+		rr_reverse_rotate_a_b(head_a, head_b);
+	finish_r(head_b, cheap, 'b');
+	finish_r(head_a, cheap->target_node, 'a');
+	pa_push_a(head_a, head_b);
+}
+
+void	check_cheapest(t_list **head_b)
+{
+	long	best;
+	t_list	*node;
+	t_list	*tmp;
+
+	best = LONG_MAX;
+	tmp = *head_b;
+	while (tmp)
+	{
+		if (tmp->price < best)
+		{
+			best = tmp->price;
+			node = tmp;
+		}
+		tmp = tmp->next;
+	}
+	node->is_cheapest = 1;
+}
+
+t_list	*smallest(t_list **head)
+{
+	t_list	*tmp;
+	t_list	*smol;
+
+	tmp = *head;
+	smol = tmp;
+	while(tmp && tmp->next)
+	{
+		if (tmp->data > (tmp->next)->data)
+			smol = tmp->next;
+		tmp = tmp->next;
+	}
+	return (smol);
+}
 
 int	is_it_sort(t_list *head_a)
 {
@@ -36,6 +87,6 @@ void	sorting(t_list **head_a, t_list **head_b, int len)
 		special_case_2(head_a, head_b);
 	else if (len == 5)
 		special_case_3(head_a, head_b);
-	// else if (len > 5)
-	// 	algorithm(head_a, head_b);
+	else if (len > 5)
+		algorithm(head_a, head_b);
 }

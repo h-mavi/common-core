@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/31 09:44:23 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:33:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	main(int argc, char *argv[])
 		ft_exit_free(head_a, head_b, -1);
 	if (!is_it_sort(head_a))
 	{
-		ft_printf("Before sorting:\n");
-		print_lists(head_a, head_b);
+		// ft_printf("Before sorting:\n");
+		// print_lists(head_a, head_b);
 		sorting(&head_a, &head_b, ft_lslen(head_a));
-		ft_printf("---------------------\nAfter sorting:\n");
-		print_lists(head_a, head_b);
+		// ft_printf("---------------------\nAfter sorting:\n");
+		// print_lists(head_a, head_b);
 	}
 	if (is_it_sort(head_a))
 		ft_exit_free(head_a, head_b, 0);
