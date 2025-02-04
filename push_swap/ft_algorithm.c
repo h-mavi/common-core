@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:21:10 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 17:19:21 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:51:18 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	set_target(t_list **head_a, t_list **head_b)
 	long	best_index;
 
 	tmp_b = *head_b;
-	while(tmp_b)
+	while (tmp_b)
 	{
 		best_index = LONG_MAX;
 		tmp_a = *head_a;
@@ -107,7 +107,7 @@ void	algorithm(t_list **head_a, t_list **head_b)
 	t_list	*smol;
 	int		i;
 
-	while(ft_lslen(*head_a) != 5)
+	while (ft_lslen(*head_a) != 5)
 		pb_push_b(head_a, head_b);
 	special_case_3(head_a, head_b);
 	while (*head_b != NULL)
@@ -119,10 +119,10 @@ void	algorithm(t_list **head_a, t_list **head_b)
 	smol = smallest(head_a);
 	i = smol->data;
 	if (smol->up_mediana)
-		while((*head_a)->data != i && *head_a != smol)
+		while ((*head_a)->data != i && *head_a != smol)
 			ra_rotate_a(head_a, 1);
 	else
-		while((*head_a)->data != i && *head_a != smol)
+		while ((*head_a)->data != i && *head_a != smol)
 			rra_reverse_rotate_a(head_a, 1);
 	if (is_it_sort(*head_a))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:24:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 16:06:52 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:46:50 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_list	*smallest(t_list **head)
 		return (NULL);
 	tmp = *head;
 	smol = tmp;
-	while(tmp && tmp->next)
+	while (tmp && tmp->next)
 	{
 		if (tmp->data > (tmp->next)->data)
 			smol = tmp->next;
@@ -78,7 +78,7 @@ int	is_it_sort(t_list *head_a)
 	t_list	*tmp;	
 
 	tmp = head_a;
-	while(tmp != NULL && tmp->next != NULL) 
+	while (tmp != NULL && tmp->next != NULL)
 	{
 		if (tmp->data > (tmp->next)->data)
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:22:41 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 09:12:00 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:50:52 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_exit_free(t_list *head_a, t_list *head_b, int err)
 {
 	t_list	*sort;
 
-	while(head_a != NULL)
+	while (head_a != NULL)
 	{
 		sort = head_a->next;
 		free(head_a);
 		head_a = sort;
 	}
-	while(head_b != NULL)
+	while (head_b != NULL)
 	{
 		sort = head_b->next;
 		free(head_b);
@@ -66,7 +66,7 @@ t_list	*split_str(char *argv[])
 		{
 			if (x == 0 && (save[i][0] == '+' || save[i][0] == '-'))
 				x++;
-			if(!ft_isdigit(save[i][x++]))
+			if (!ft_isdigit(save[i][x++]))
 				ft_out(save, head);
 		}
 		x = ft_atol(save[i]);

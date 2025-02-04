@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 12:18:56 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:46:05 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	must_be_smaller(t_list **head_a)
 	tmp = *head_a;
 	smol = tmp->data;
 	tmp = tmp->next;
-	while(tmp)
+	while (tmp)
 	{
 		if (smol > tmp->data)
 			return (0);
@@ -60,7 +60,7 @@ int	ft_lslen(t_list *head_a)
 
 	i = 0;
 	tmp = head_a;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		i++;
 		tmp = tmp->next;
@@ -81,16 +81,10 @@ int	main(int argc, char *argv[])
 		head_a = split_str(argv);
 	else if (argc > 2 || argc == 2)
 		head_a = args_fill_list(argc, argv);
-	if(!check_if_double(head_a))
+	if (!check_if_double(head_a))
 		ft_exit_free(head_a, head_b, -1);
 	if (!is_it_sort(head_a))
-	{
-		// ft_printf("Before sorting:\n");
-		// print_lists(head_a, head_b);
 		sorting(&head_a, &head_b, ft_lslen(head_a));
-		// ft_printf("---------------------\nAfter sorting:\n");
-		// print_lists(head_a, head_b);
-	}
 	if (is_it_sort(head_a))
 		ft_exit_free(head_a, head_b, 0);
 }

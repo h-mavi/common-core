@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:14:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/03 14:29:08 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:50:22 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "./libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>
-#include <unistd.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -40,7 +40,7 @@ long	ft_atol(const char *str);
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		check_if_double(t_list *head);
-t_list	*args_fill_list(int	argc, char *argv[]);
+t_list	*args_fill_list(int argc, char *argv[]);
 
 //in utils.c
 void	ft_error(void);
@@ -52,7 +52,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 //in bruh.c
 void	ft_out(char **save, t_list *head);
 t_list	*find_cheapest(t_list **head);
-void	finish_r(t_list **head, t_list *top_node, char	ls);
+void	finish_r(t_list **head, t_list *top_node, char ls);
 
 //in operation.c
 void	sa_swap_a(t_list *head_a, int p);
@@ -78,8 +78,8 @@ void	sorting(t_list **head_a, t_list **head_b, int len);
 //in special_cases.c
 void	special_case_0(t_list **head_a);
 void	special_case_1(t_list **head_a);
-void	special_case_2(t_list **head_a,t_list **head_b);
-void	special_case_3(t_list **head_a,t_list **head_b);
+void	special_case_2(t_list **head_a, t_list **head_b);
+void	special_case_3(t_list **head_a, t_list **head_b);
 
 //in ft_algorithm.c
 void	set_position(t_list **head);

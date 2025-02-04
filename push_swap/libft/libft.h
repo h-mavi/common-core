@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:36:11 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/24 14:48:41 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:37:49 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <stdio.h>
 # include <unistd.h>
 
-
 int		ft_atoi(const char *str);
-int	    ft_iswhitespace(char c);
+int		ft_iswhitespace(char c);
 int		ft_isalnum(int a);
 int		ft_isalpha(int a);
 int		ft_isascii(int a);

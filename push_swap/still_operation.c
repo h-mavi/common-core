@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:23:15 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 12:11:05 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:49:28 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	rra_reverse_rotate_a(t_list **head_a, int p)
 	t_list	*find;
 
 	if (*head_a == NULL || (*head_a)->next == NULL)
-		return;
+		return ;
 	sort = *head_a;
-	while(sort->next != NULL)
+	while (sort->next != NULL)
 		sort = sort->next;
 	ft_lstadd_front(head_a, sort);
 	find = *head_a;
@@ -68,9 +68,9 @@ void	rrb_reverse_rotate_b(t_list **head_b, int p)
 	t_list	*find;
 
 	if (*head_b == NULL || (*head_b)->next == NULL)
-		return;
+		return ;
 	sort = *head_b;
-	while(sort->next != NULL)
+	while (sort->next != NULL)
 		sort = sort->next;
 	ft_lstadd_front(head_b, sort);
 	find = *head_b;

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 09:20:54 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 12:34:31 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:38:12 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list	*find_cheapest(t_list **head)
 	return (NULL);
 }
 
-void	finish_r(t_list **head, t_list *top_node, char	ls)
+void	finish_r(t_list **head, t_list *top_node, char ls)
 {
 	int	i;
 

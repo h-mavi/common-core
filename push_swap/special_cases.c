@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:03:23 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/31 15:30:53 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:45:14 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ void	special_case_1(t_list **head_a)
 	return ;
 }
 
-void	special_case_2(t_list **head_a,t_list **head_b)
+void	special_case_2(t_list **head_a, t_list **head_b)
 {
 	t_list	*tmp;
 
 	tmp = *head_a;
-	while(!must_be_smaller(head_a))
+	while (!must_be_smaller(head_a))
 	{
 		tmp = *head_a;
-		if((tmp->next)->data < tmp->data && (tmp->next)->data < \
+		if ((tmp->next)->data < tmp->data && (tmp->next)->data < \
 		((tmp->next)->next)->data && (tmp->next)->data < \
 		(((tmp->next)->next)->next)->data)
 			ra_rotate_a(head_a, 1);
-		else if((((tmp->next)->next)->next)->data < tmp->data && \
+		else if ((((tmp->next)->next)->next)->data < tmp->data && \
 		(((tmp->next)->next)->next)->data < (tmp->next)->data && \
 		(((tmp->next)->next)->next)->data < ((tmp->next)->next)->data)
 			rra_reverse_rotate_a(head_a, 1);
@@ -67,14 +67,15 @@ void	special_case_2(t_list **head_a,t_list **head_b)
 		return ;
 }
 
-void	special_case_3(t_list **head_a,t_list **head_b)
+void	special_case_3(t_list **head_a, t_list **head_b)
 {
 	t_list	*tmp;
 
 	tmp = *head_a;
-	if (tmp->data > (tmp->next)->data && tmp->data > ((tmp->next)->next)->data\
-	&& tmp->data > (((tmp->next)->next)->next)->data && tmp->data > \
-	((((tmp->next)->next)->next)->next)->data)
+	if (tmp->data > (tmp->next)->data && tmp->data > \
+		((tmp->next)->next)->data && tmp->data > \
+		(((tmp->next)->next)->next)->data && tmp->data > \
+		((((tmp->next)->next)->next)->next)->data)
 		ra_rotate_a(head_a, 1);
 	while (!must_be_smaller(head_a))
 	{

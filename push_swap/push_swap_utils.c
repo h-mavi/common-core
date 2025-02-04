@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:32:26 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/01/28 08:56:44 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:49:03 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_atol(const char *str)
 {
 	int			i;
-	long	num;
+	long		num;
 	int			sign;
 
 	num = 0;
@@ -86,7 +86,7 @@ int	check_if_double(t_list *head)
 	return (1);
 }
 
-t_list *args_fill_list(int	argc, char *argv[])
+t_list	*args_fill_list(int argc, char *argv[])
 {
 	int		i;
 	int		x;
@@ -95,7 +95,7 @@ t_list *args_fill_list(int	argc, char *argv[])
 
 	i = 0;
 	head = NULL;
-	while(++i < argc)
+	while (++i < argc)
 	{
 		x = 0;
 		while (argv[i][x] != '\0')
