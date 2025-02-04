@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:21:10 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 11:02:48 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:19:21 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ void	set_prince(t_list **head_a, t_list **head_b)
 		tmp_b->price = tmp_b->cur_position;
 		if (!tmp_b->up_mediana)
 			tmp_b->price = len_b - tmp_b->cur_position;
+		if (tmp_b->target_node->up_mediana && tmp_b->up_mediana && \
+		tmp_b->target_node != *head_a && tmp_b != *head_b)
+			tmp_b->price -= 1;
+		if (!(tmp_b->target_node->up_mediana) && !(tmp_b->up_mediana))
+			tmp_b->price -= 2;
 		if (tmp_b->target_node->up_mediana)
 			tmp_b->price += tmp_b->target_node->cur_position;
 		else
