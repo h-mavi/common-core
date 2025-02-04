@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:24:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 10:53:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:21:33 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_move_node(t_list **head_a, t_list **head_b)
 
 	cheap = find_cheapest(head_b);
 	if (cheap->up_mediana && cheap->target_node->up_mediana && \
-	cheap != *head_b && cheap->target_node != *head_a)
+	cheap->data != (*head_b)->data && cheap->target_node->data != (*head_a)->data)
 		rr_rotate_a_b(head_a, head_b);
 	else if (!(cheap->up_mediana) && !(cheap->target_node->up_mediana))
 		rr_reverse_rotate_a_b(head_a, head_b);
@@ -44,6 +44,7 @@ void	check_cheapest(t_list **head_b)
 			best = tmp->price;
 			node = tmp;
 		}
+		tmp->is_cheapest = 0;
 		tmp = tmp->next;
 	}
 	node->is_cheapest = 1;

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 10:31:06 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:18:56 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	rr_reverse_rotate_a_b(t_list **head_a, t_list **head_b)
 {
 	rra_reverse_rotate_a(head_a, 0);
 	rrb_reverse_rotate_b(head_b, 0);
-	ft_printf("rr\n");
+	ft_printf("rrr\n");
 }
 
 void	print_lists(t_list *head_a, t_list *head_b)

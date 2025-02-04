@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 09:20:54 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 10:54:26 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:34:31 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_list	*find_cheapest(t_list **head)
 {
 	t_list	*tmp;
 
+	tmp = *head;
 	if (NULL == *head)
 		return (NULL);
-	tmp = *head;
 	while (tmp)
 	{
 		if (tmp->is_cheapest)
@@ -33,20 +33,6 @@ t_list	*find_cheapest(t_list **head)
 	}
 	return (NULL);
 }
-
-
-// void	check_if_works(t_list **head_a)
-// {
-// 	t_list	*tmp;
-
-// 	tmp = *head_a;
-// 	while (tmp)
-// 	{
-// 		ft_printf("%d\n", tmp->data);
-// 		tmp = tmp->next;
-// 	}
-// }
-
 
 void	finish_r(t_list **head, t_list *top_node, char	ls)
 {
@@ -60,10 +46,7 @@ void	finish_r(t_list **head, t_list *top_node, char	ls)
 			if (top_node->up_mediana)
 				ra_rotate_a(head, 1);
 			else
-			{
 				rra_reverse_rotate_a(head, 1);
-				// check_if_works(head);
-			}
 		}
 		else if (ls == 'b')
 		{
@@ -72,6 +55,5 @@ void	finish_r(t_list **head, t_list *top_node, char	ls)
 			else
 				rrb_reverse_rotate_b(head, 1);
 		}
-		// ft_printf("%d = %d\n", top_node->data, i);
 	}
 }
