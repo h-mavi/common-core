@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:24:56 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/03 11:49:40 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:53:47 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	check_cheapest(t_list **head_b)
 	t_list	*node;
 	t_list	*tmp;
 
+	if (NULL == *head_b)
+		return ;
 	best = LONG_MAX;
 	tmp = *head_b;
 	while (tmp)
@@ -52,6 +54,8 @@ t_list	*smallest(t_list **head)
 	t_list	*tmp;
 	t_list	*smol;
 
+	if (NULL == *head)
+		return (NULL);
 	tmp = *head;
 	smol = tmp;
 	while(tmp && tmp->next)

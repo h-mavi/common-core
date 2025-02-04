@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:21:10 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/03 12:22:41 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:37:07 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	set_position(t_list **head)
 	int		mediana;
 
 	i = 0;
+	if (NULL == *head)
+		return ;
 	tmp = *head;
 	mediana = ft_lslen(*head) / 2;
 	while (tmp)
@@ -43,7 +45,7 @@ void	set_target(t_list **head_a, t_list **head_b)
 	tmp_b = *head_b;
 	while(tmp_b)
 	{
-		best_index = LONG_MAX;;
+		best_index = LONG_MAX;
 		tmp_a = *head_a;
 		while (tmp_a)
 		{
@@ -81,7 +83,7 @@ void	set_prince(t_list **head_a, t_list **head_b)
 		if (tmp_b->target_node->up_mediana)
 			tmp_b->price += tmp_b->target_node->cur_position;
 		else
-			tmp_b->price = len_a - tmp_b->target_node->cur_position;
+			tmp_b->price += len_a - tmp_b->target_node->cur_position;
 		tmp_b = tmp_b->next;
 	}
 }
@@ -112,9 +114,11 @@ void	algorithm(t_list **head_a, t_list **head_b)
 	smol = smallest(head_a);
 	i = smol->data;
 	if (smol->up_mediana)
-		while((*head_a)->data != i)
+		while((*head_a)->data != i && *head_a != smol)
 			ra_rotate_a(head_a, 1);
 	else
-		while((*head_a)->data != i)
+		while((*head_a)->data != i && *head_a != smol)
 			rra_reverse_rotate_a(head_a, 1);
+	if (is_it_sort(*head_a))
+		return ;
 }
