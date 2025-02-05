@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:54:28 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/04 17:46:05 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:17:01 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int	main(int argc, char *argv[])
 
 	head_a = NULL;
 	head_b = NULL;
-	if (argc == 2 && ft_strlen(argv[1]) == 0)
+	if (argc < 2)
+		return (0);
+	if ((argc == 2 && ft_strlen(argv[1]) == 0))
 		ft_error();
 	else if (argc == 2 && ft_strlen(argv[1]) > 0)
 		head_a = split_str(argv);
