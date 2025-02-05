@@ -77,7 +77,7 @@ int	main(int argc, char *argv[])
 	head_b = NULL;
 	if (argc < 2)
 		return (0);
-	if ((argc == 2 && ft_strlen(argv[1]) == 0))
+	if (argc == 2 && ft_strlen(argv[1]) == 0)
 		ft_error();
 	else if (argc == 2 && ft_strlen(argv[1]) > 0)
 		head_a = split_str(argv);
