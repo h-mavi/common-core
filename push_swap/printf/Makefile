@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 17:51:13 by mfanelli          #+#    #+#              #
-#    Updated: 2025/01/24 11:28:32 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/02/07 10:59:03 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJECTS = $(SOURCES:.c=.o)
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 
-all : $(NAME) clean
+all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	ar -rcs $(NAME) $(OBJECTS)
