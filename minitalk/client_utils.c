@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   client_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 10:31:34 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/27 15:54:09 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/02/07 10:31:58 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/02/07 10:37:21 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
-static int	ft_iswhitespace(char c)
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_iswhitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\f' \
 		|| c == '\v' || c == '\r')
 	{
 		return (1);
 	}
+	return (0);
+}
+
+int	ft_isdigit(int a)
+{
+	if (a >= '0' && a <= '9')
+		return (1);
 	return (0);
 }
 
@@ -42,29 +59,16 @@ int	ft_atoi(const char *str)
 	num = num * sign;
 	return (num);
 }
-/* int main(void)
-{
-	char *test_cases[] = {
-		"42",
-		"-42",
-		"  42",
-		"  \t  42",
-		"  -1234",
-		"+1234",
-		"0",
-		"-0",
-		"  \t +123abc",
-		"abc123",
-		"  +2147483647",
-		"  -2147483648", 
-		"  99999999999999", 
-		NULL
-	};
 
-	
-	for (int i = 0; test_cases[i] != NULL; i++) {
-		int result = ft_atoi(test_cases[i]);
-		int res = atoi(test_cases[i]);
-		printf("Input: \"%s\", ft_atoi: %d  %d\n", test_cases[i], result, res);
-	}
-} */
+char	*ft_strchr(const char *str, int c)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+	if (str[i] == (char)c)
+		return ((char *)str + i);
+	return (NULL);
+}

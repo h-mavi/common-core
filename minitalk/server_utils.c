@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 10:40:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2024/11/28 15:16:18 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/02/07 10:28:55 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/02/07 10:33:23 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -39,15 +39,33 @@ void	ft_putnbr_fd(int n, int fd)
 	while (i >= 0)
 		write(fd, &num[i--], 1);
 }
-/* int	main(void)
+
+void	ft_putchar_fd(char c, int fd)
 {
-	ft_putnbr_fd(0, 1);
-	printf("\n");
-	ft_putnbr_fd(10000043, 1);
-	printf("\n");
-	ft_putnbr_fd(-10000043, 1);
-	printf("\n");
-	ft_putnbr_fd(-2147483648, 1);
-	printf("\n");
-	ft_putnbr_fd(2147483647, 1);
-} */
+	if (fd < 0)
+		return ;
+	write (fd, &c, 1);
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	int	i;
+
+	i = -1;
+	if (fd < 0)
+		return ;
+	while (s[++i])
+		write(fd, &s[i], 1);
+	write(fd, "\n", 1);
+}
+
+int	ft_recursive_power(int nb, int power)
+{
+	if (power == 0)
+		return (1);
+	if (power < 0)
+		return (0);
+	if (nb == 0)
+		return (0);
+	return (nb * ft_recursive_power(nb, power - 1));
+}
