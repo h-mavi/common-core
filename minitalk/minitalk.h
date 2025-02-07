@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:36:01 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/07 10:40:25 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:30:22 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 
 //in client_utils.c
 size_t	ft_strlen(const char *str);
-int	    ft_iswhitespace(char c);
-int	    ft_isdigit(int a);
-int	    ft_atoi(const char *str);
+int		ft_iswhitespace(char c);
+int		ft_isdigit(int a);
+int		ft_atoi(const char *str);
 char	*ft_strchr(const char *str, int c);
 
 //in server_utils.c
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
-int	    ft_recursive_power(int nb, int power);
+int		ft_recursive_power(int nb, int power);
 
 #endif
