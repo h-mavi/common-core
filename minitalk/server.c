@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:35:50 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/10 09:58:42 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:30:23 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	count_len(int *cur_bit_pos, int *len_recived, char **str, int sig)
 	(*cur_bit_pos)++;
 }
 
-void	reset(int *len, char **str, int *pid_recived, pid_t *pid, int *i)
+void	reset(int *len, char **str, int *pid_recived, pid_t *pid)
 {
 	*len = 0;
 	*pid_recived = 0;
@@ -42,7 +42,6 @@ void	reset(int *len, char **str, int *pid_recived, pid_t *pid, int *i)
 		free(*str);
 		*str = 0;
 	}
-	*i = 0;
 }
 
 void	get_pid(int *pid_recived, pid_t *pid, int *cur_bit_pos, int sig)
@@ -65,8 +64,6 @@ void	info_from_client(int sig)
 	static pid_t	pid = 0;
 	static int		cur_bit_pos = 0;
 	static char		*str = 0;
-	static int		i = 0;
-	static char		chara = 0;
 
 	if (pid_recived == 0)
 		get_pid(&pid_recived, &pid, &cur_bit_pos, sig);
@@ -74,21 +71,8 @@ void	info_from_client(int sig)
 		count_len(&cur_bit_pos, &len_recived, &str, sig);
 	else
 	{
-		if (sig == SIGUSR1)
-			chara += ft_recursive_power(2, (cur_bit_pos));
-		if (cur_bit_pos == 7)
-		{
-			str[i++] = chara;
-			cur_bit_pos = 0;
-			if (chara == 0)
-			{
-				kill(pid, SIGUSR1);
-				return (reset(&len_recived, &str, &pid_recived, &pid, &i));
-			}
-			chara = 0;
-			return ;
-		}
-		cur_bit_pos++;
+		if (!print_str(pid, str, &cur_bit_pos, sig))
+			return (reset(&len_recived, &str, &pid_recived, &pid));
 	}
 }
 
