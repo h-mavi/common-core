@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:36:01 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/07 18:30:22 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:05:39 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_recursive_power(int nb, int power);
+
+//in common_file.c
+void	handler(int sig);
 
 #endif

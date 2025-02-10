@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:35:48 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/07 18:27:23 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:57:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,6 @@ void	ft_send_pid(pid_t pid, pid_t clie_pid)
 		clie_pid = clie_pid >> 1;
 		usleep(EPPY);
 	}
-}
-
-void	handler(int sig)
-{
-	if (sig == SIGUSR1)
-		write(1, "Photos brintet\n", 15);
-	else if (sig == SIGUSR2)
-		write(1, "wtf just heappend\n", 18);
-	exit (0);
 }
 
 int	main(int argc, char *argv[])

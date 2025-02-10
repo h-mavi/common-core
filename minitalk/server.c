@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:35:50 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/07 18:29:43 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:58:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ int	main(void)
 	ft_putchar_fd('\n', 1);
 	signal (SIGUSR1, info_from_client);
 	signal (SIGUSR2, info_from_client);
-	while(1)
+	while (1)
 		pause();
 }
