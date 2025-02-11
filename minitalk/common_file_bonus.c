@@ -15,7 +15,7 @@
 void	handler(int sig)
 {
 	if (sig == SIGUSR1)
-		write(1, "Stringa stampata!\n", 15);
+		write(1, "Stringa stampata!\n", 18);
 	else if (sig == SIGUSR2)
 		write(1, "wtf just heappend\n", 18);
 	exit (0);
