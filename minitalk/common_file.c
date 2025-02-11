@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:03:09 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/10 10:30:17 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/11 08:50:48 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	handler(int sig)
 {
 	if (sig == SIGUSR1)
-		write(1, "Photos brintet\n", 15);
+		write(1, "Stringa stampata!\n", 15);
 	else if (sig == SIGUSR2)
 		write(1, "wtf just heappend\n", 18);
 	exit (0);
