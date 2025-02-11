@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bouns.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:35:50 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/11 09:12:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:06:52 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	count_len(int *cur_bit_pos, int *len_recived, char **str, int sig)
 {
@@ -31,9 +31,11 @@ void	count_len(int *cur_bit_pos, int *len_recived, char **str, int sig)
 	(*cur_bit_pos)++;
 }
 
-void	reset(int *len, char **str)
+void	reset(int *len, char **str, int *pid_recived, pid_t *pid)
 {
 	*len = 0;
+	*pid_recived = 0;
+	*pid = 0;
 	if (*str)
 	{
 		ft_putendl_fd(*str, 1);
@@ -42,38 +44,35 @@ void	reset(int *len, char **str)
 	}
 }
 
-int	print_str(char *str, int *cur_bit_pos, int sig)
+void	get_pid(int *pid_recived, pid_t *pid, int *cur_bit_pos, int sig)
 {
-	static char	chara = 0;
-	static int	i = 0;
-
 	if (sig == SIGUSR1)
-		chara += ft_recursive_power(2, (*cur_bit_pos));
-	if (*cur_bit_pos == 7)
+		*pid += ft_recursive_power(2, *cur_bit_pos);
+	if (*cur_bit_pos == 31)
 	{
-		str[i++] = chara;
+		*pid_recived = 1;
 		*cur_bit_pos = 0;
-		if (chara == 0)
-			return (0);
-		chara = 0;
-		return (1);
+		return ;
 	}
 	(*cur_bit_pos)++;
-	return (1);
 }
 
 void	info_from_client(int sig)
 {
 	static int		len_recived = 0;
+	static int		pid_recived = 0;
+	static pid_t	pid = 0;
 	static int		cur_bit_pos = 0;
 	static char		*str = 0;
 
-	if (len_recived == 0)
+	if (pid_recived == 0)
+		get_pid(&pid_recived, &pid, &cur_bit_pos, sig);
+	else if (len_recived == 0)
 		count_len(&cur_bit_pos, &len_recived, &str, sig);
 	else
 	{
-		if (!print_str(str, &cur_bit_pos, sig))
-			return (reset(&len_recived, &str));
+		if (!print_str(pid, str, &cur_bit_pos, sig))
+			return (reset(&len_recived, &str, &pid_recived, &pid));
 	}
 }
 

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:36:01 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/11 09:14:20 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:06:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -30,6 +30,10 @@ char	*ft_strchr(const char *str, int c);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
+
+//in common_file.c
+void	handler(int sig);
 int		ft_recursive_power(int nb, int power);
+int		print_str(pid_t pid, char *str, int *cur_bit_pos, int sig);
 
 #endif

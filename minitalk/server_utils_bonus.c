@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_utils.c                                     :+:      :+:    :+:   */
+/*   server_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:28:55 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/11 09:13:11 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:06:57 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -57,15 +57,4 @@ void	ft_putendl_fd(char *s, int fd)
 	while (s[++i])
 		write(fd, &s[i], 1);
 	write(fd, "\n", 1);
-}
-
-int	ft_recursive_power(int nb, int power)
-{
-	if (power == 0)
-		return (1);
-	if (power < 0)
-		return (0);
-	if (nb == 0)
-		return (0);
-	return (nb * ft_recursive_power(nb, power - 1));
 }
