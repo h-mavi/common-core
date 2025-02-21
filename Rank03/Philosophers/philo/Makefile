@@ -6,12 +6,12 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 13:03:59 by mfanelli          #+#    #+#              #
-#    Updated: 2025/02/20 09:08:54 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/02/21 12:01:55 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SOURCES = main2.c utils2.c
+SOURCES = main.c utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc

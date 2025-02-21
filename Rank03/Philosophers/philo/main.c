@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/21 11:56:53 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:26:18 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo2.h"
+#include "philo.h"
+
+
+void	ft_scriba(char	*str, data_t *th)
+{
+	im_writing((*th).head_th);
+	printf(str,(*th).whoami);
+	i_finished((*th).head_th);
+}
 
 int	check_error(int argc, char *argv[])
 {
@@ -62,44 +70,43 @@ int	check_if_dead(data_t *th)
 	struct timeval	temp;
 
 	gettimeofday(&temp, NULL);
-	if (((temp.tv_usec * 1000) - ((*th).slay.tv_usec * 1000)) >= (*th).time_to_die)
+	if (((temp.tv_usec - (*th).slay.tv_usec) / 1000) >= (*th).time_to_die)
 	{	
 		(*th).dead = 1;
-		im_writing((*th).head_th);
-		printf("%d E' MORTO\n",(*th).whoami);
-		i_finished((*th).head_th);
+		ft_scriba("%d E' MORTO\n", th);
 		return (0);
 	}
 	return (1);
 }
 
 int	go_thinking(data_t *th)
-{	
-	im_writing((*th).head_th);
-	printf("%d pensa...\n", (*th).whoami);
-	i_finished((*th).head_th);
-	while (1)
-	{
-		if ((*th).my_f == 0 && *(*th).your_f == 0)
-			return (1);
+{
+	ft_scriba("%d pensa...\n", th);
+	while ((*th).my_f != 0 || *(*th).your_f != 0)
 		if (check_if_dead(th) == 0)
 			return (0);
-	}
-	return (2);
+	return (1);
 }
 
 void	go_sleeping(data_t *th)
 {
-	im_writing((*th).head_th);
-	printf("%d va a dormire\n",(*th).whoami);
-	i_finished((*th).head_th);
+	ft_scriba("%d va a dormire\n", th);
 	usleep((*th).time_to_sleep * 1000);
 	if (check_if_dead(th) == 0)
 		return ;
-	im_writing((*th).head_th);
-	printf("%d finisce di dormire\n",(*th).whoami);
-	i_finished((*th).head_th);
+	ft_scriba("%d finisce di dormire\n", th);
 	return ;
+}
+
+int	is_someone_dead(data_t *th)
+{
+	int	i;
+
+	i = -1;
+	while(++i < th[0].num_philos)
+		if (th[i].dead == 1)
+			return (0);
+	return (1);
 }
 
 void	*go_eat(void *th)
@@ -109,7 +116,7 @@ void	*go_eat(void *th)
 	cp = (data_t *)th;
 	gettimeofday(&(*cp).slay, NULL);
 	while (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && \
-	(*cp).dead == 0) || ((*cp).max_dinners == 0 && (*cp).dead == 0))
+	is_someone_dead((*cp).head_th) != 0) || ((*cp).max_dinners == 0 && is_someone_dead((*cp).head_th) != 0))
 	{
 		if ((*cp).my_f == 0 && *(*cp).your_f == 0)
 		{
@@ -117,13 +124,9 @@ void	*go_eat(void *th)
 			*(*cp).your_f = 1;
 			pthread_mutex_lock(&(*cp).my_fork);
 			pthread_mutex_lock(&((*cp).left_philo->my_fork));
-			im_writing((*cp).head_th);
-			printf("%d inizia a mangiare\n", (*cp).whoami);
-			i_finished((*cp).head_th);
+			ft_scriba("%d inizia a mangiare\n", cp);
 			usleep((*cp).time_to_eat * 1000);
-			im_writing((*cp).head_th);
-			printf("%d ha finito\n", (*cp).whoami);
-			i_finished((*cp).head_th);
+			ft_scriba("%d ha finito\n", cp);
 			pthread_mutex_unlock(&(*cp).my_fork);
 			pthread_mutex_unlock(&((*cp).left_philo->my_fork));
 			(*cp).my_f = 0;
@@ -132,11 +135,27 @@ void	*go_eat(void *th)
 			gettimeofday(&(*cp).slay, NULL);
 			go_sleeping(cp);
 		}
-		if ((*cp).dead == 0)
+		if (is_someone_dead((*cp).head_th) != 0 && (*cp).dinners < (*cp).max_dinners)
 			if (go_thinking(cp) == 0)
 				return (0);
 	}
 	return (0);
+}
+
+void	free_all(data_t *th)
+{
+	int	i;
+	int	max;
+
+	max = th[0].num_philos;
+	i = 0;
+	while(i < max)
+	{
+		pthread_mutex_destroy(&th[i].my_fork);
+		pthread_mutex_destroy(&th[i].printing);
+		i++;
+	}
+	free(th);
 }
 
 
@@ -157,6 +176,10 @@ int	main(int argc, char *argv[])
 	while (++i < th[0].num_philos)
 		if (pthread_join(th[i].philo, NULL) != 0) //pthread_detach!!!!!
 			return (0);
+	free_all(th);
+	return (0);
 }
 
 //devo capire come fare a mandare singolarmente i messaggi senza che aspettino gli altri thread
+//+ si sminchia se gli do quanti pasti fare e se do 3 philo dopop un po' uno scompare senza morire
+//da fare TANTI, TANTI TEST... pero' non leakka

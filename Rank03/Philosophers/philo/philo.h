@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo2.h                                           :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/21 10:55:13 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:01:49 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO2_H
-# define PHILO2_H
+#ifndef PHILO_H
+# define PHILO_H
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
