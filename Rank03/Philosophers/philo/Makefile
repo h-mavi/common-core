@@ -6,22 +6,22 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 13:03:59 by mfanelli          #+#    #+#              #
-#    Updated: 2025/02/19 11:29:09 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/02/20 09:08:54 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SOURCES = main.c utils.c
+SOURCES = main2.c utils2.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -pthread -g
+FLAGS = -Wall -Wextra -Werror -g -pthread
 
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	@echo Compiling...
-	$(CC) $(OBJECTS) $(FLAGS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJECTS) -o $(NAME)
 
 clean:
 	@echo Cleaning...
