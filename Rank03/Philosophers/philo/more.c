@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:28:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 14:45:45 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:39:17 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ long long	get_curr_time(void)
 	return (tmp);
 }
 
-void	locks(data_t *th)
+void	locks(t_data *th)
 {
 	if ((*th).whoami == 1)
 	{
@@ -37,7 +37,7 @@ void	locks(data_t *th)
 	}
 }
 
-void	unlocks(data_t *th)
+void	unlocks(t_data *th)
 {
 	if ((*th).whoami == 1)
 	{
@@ -51,7 +51,7 @@ void	unlocks(data_t *th)
 	}
 }
 
-void	gnam(data_t *th)
+void	gnam(t_data *th)
 {
 	locks(th);
 	(*th).my_f = 1;
@@ -61,9 +61,10 @@ void	gnam(data_t *th)
 	gettimeofday(&(*th).last_eat, NULL);
 	ft_scriba("%lld %d is eating\n", th);
 	usleep((*th).time_to_eat * 1000);
-	// ft_scriba("%lld %d has finished eating\n", th);
 	++(*th).dinners;
 	(*th).my_f = 0;
 	(*th).left_philo->my_f = 0;
 	unlocks(th);
 }
+
+// ft_scriba("%lld %d has finished eating\n", th);

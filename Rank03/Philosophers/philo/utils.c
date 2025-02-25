@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:00:48 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 08:47:03 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:44:07 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-int	im_writing(data_t *th)
+int	im_writing(t_data *th)
 {
 	int	*i;
 
@@ -68,7 +68,7 @@ int	im_writing(data_t *th)
 	return (1);
 }
 
-void	i_finished(data_t *th)
+void	i_finished(t_data *th)
 {
 	int	*i;
 
@@ -78,9 +78,3 @@ void	i_finished(data_t *th)
 		pthread_mutex_unlock(&th[*i].printing);
 	free(i);
 }
-
-// void	printing(data_t *th)
-// {
-// 	printf("\nSono il filosofo %d e so che:\ni filosofi in tutto son %d,\nil tempo per dormire, mangiare e morire e' %d, %d, %d,\nche la mia forchetta e' %p (%p) e quella del philo a sinistra e' %p (%p),\nho mangiato %d volte, la mia flag di morte e' %d,\nmentre quella per mangiare e' ...,\ne infine la nostra casa ha l'indirizzo %p.\n", \
-// 			(*th).whoami, (*th).num_philos, (*th).time_to_sleep, (*th).time_to_eat, (*th).time_to_die, &((*th).my_fork), &((*th).my_f), &((*th).left_philo->my_fork), &(*th).left_philo->my_f, (*th).dinners, (*th).dead, (*th).head_th);
-// }

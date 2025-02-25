@@ -6,14 +6,13 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 14:47:26 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:37:44 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-void	ft_scriba(char	*str, data_t *th)
+void	ft_scriba(char	*str, t_data *th)
 {
 	if (im_writing((*th).head_th) != 0)
 	{
@@ -36,7 +35,7 @@ int	check_error(int argc, char *argv[])
 	return (0);
 }
 
-void	set_data(data_t *th, char *argv[], int argc)
+void	set_data(t_data *th, char *argv[], int argc)
 {
 	int	i;
 
@@ -64,14 +63,14 @@ void	set_data(data_t *th, char *argv[], int argc)
 	th[0].left_philo = &th[i - 1];
 }
 
-void	free_all(data_t *th)
+void	free_all(t_data *th)
 {
 	int	i;
 	int	max;
 
 	max = th[0].num_philos;
 	i = 0;
-	while(i < max)
+	while (i < max)
 	{
 		pthread_mutex_destroy(&th[i].my_fork);
 		pthread_mutex_destroy(&th[i].printing);
@@ -80,15 +79,14 @@ void	free_all(data_t *th)
 	free(th);
 }
 
-
 int	main(int argc, char *argv[])
 {
 	int		i;
-	data_t	*th;
+	t_data	*th;
 
 	if (check_error(argc, argv) != 0)
 		return (0);
-	th = (data_t *)malloc(sizeof(data_t) * ft_atoi(argv[1]));
+	th = (t_data *)malloc(sizeof(t_data) * ft_atoi(argv[1]));
 	set_data(th, argv, argc);
 	i = -1;
 	while (++i < th[0].num_philos)
@@ -96,13 +94,14 @@ int	main(int argc, char *argv[])
 			return (0);
 	i = -1;
 	while (++i < th[0].num_philos)
-		if (pthread_join(th[i].philo, NULL) != 0) //pthread_detach!!!!!
+		if (pthread_join(th[i].philo, NULL) != 0)
 			return (0);
 	free_all(th);
 	return (0);
 }
 
-//alcune cose non vengono scritte nell'ordine corretto, perche' virtualmente avvengono nello
-//stesso momento ma a me seve che siano in un ordine specifico (o almeno credo)
-//+ helgrind mi rompe ancora il cazzo perche' in go_eat guardo gli indici delle forchette senza
-//lockare e in check_if_dead modifico dead senza lockare
+//alcune cose non vengono scritte nell'ordine corretto, perche' virtualmente
+//avvengono nello stesso momento ma a me seve che siano in un ordine specifico
+//(o almeno credo) + helgrind mi rompe ancora il cazzo perche' in go_eat
+//guardo gli indici delle forchette senza lockare e in check_if_dead modifico
+// dead senza lockare
