@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 08:41:13 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:31:12 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct data_s
 	int				max_dinners;
 	int             dinners;
 	int             my_f;
-	struct timeval	slay;
 	int             dead;
+	struct timeval	start;
+	struct timeval	last_eat;
 	struct data_s	*left_philo;
 	struct data_s 	*head_th;
 }		data_t;
@@ -44,9 +45,22 @@ int		ft_iswhitespace(char c);
 int		ft_atoi(const char *str);
 int		im_writing(data_t *th);
 void	i_finished(data_t *th);
-void	printing(data_t *th);
+// void	printing(data_t *th);
 
 //in main.c
-int	is_someone_dead(data_t *th);
+void	ft_scriba(char	*str, data_t *th);
+int		check_error(int argc, char *argv[]);
+void	set_data(data_t *th, char *argv[], int argc);
+void	free_all(data_t *th);
+
+//tasks.c
+int		check_if_dead(data_t *th);
+int		is_someone_dead(data_t *th);
+int		go_thinking(data_t *th);
+void	go_sleeping(data_t *th);
+void	*go_eat(void *th);
+
+//in more.c
+long long	get_curr_time(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 09:31:51 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:39:35 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_scriba(char	*str, data_t *th)
 {
 	if (im_writing((*th).head_th) != 0)
 	{
-		printf(str,(*th).whoami);
+		printf(str, (get_curr_time() - (((*th).start.tv_sec * 1000) + \
+		((*th).start.tv_usec / 1000))), (*th).whoami);
 		i_finished((*th).head_th);
 	}
 }
@@ -46,9 +47,9 @@ void	set_data(data_t *th, char *argv[], int argc)
 		pthread_mutex_init(&th[i].printing, NULL);
 		th[i].num_philos = ft_atoi(argv[1]);
 		th[i].whoami = i + 1;
-		th[i].time_to_die = ft_atoi(argv[2]) * 1000;
-		th[i].time_to_eat = ft_atoi(argv[3]) * 1000;
-		th[i].time_to_sleep = ft_atoi(argv[4]) * 1000;
+		th[i].time_to_die = ft_atoi(argv[2]);
+		th[i].time_to_eat = ft_atoi(argv[3]);
+		th[i].time_to_sleep = ft_atoi(argv[4]);
 		th[i].dinners = 0;
 		th[i].my_f = 0;
 		th[i].dead = 0;
@@ -61,88 +62,6 @@ void	set_data(data_t *th, char *argv[], int argc)
 			th[i].left_philo = &th[i - 1];
 	}
 	th[0].left_philo = &th[i - 1];
-}
-
-int	check_if_dead(data_t *th)
-{
-	struct timeval	temp;
-	int				count;
-
-	gettimeofday(&temp, NULL);
-	count = 0;
-	if (temp.tv_usec % 1000000 == 0)
-		count++;
-	if ((temp.tv_usec - (*th).slay.tv_usec) + (count * 1000000) >= (*th).time_to_die)
-	{	
-		ft_scriba("%d E' MORTO\n", th);
-		(*th).dead = 1;
-		return (0);
-	}
-	return (1);
-}
-
-int	go_thinking(data_t *th)
-{
-	ft_scriba("%d pensa...\n", th);
-	while ((*th).my_f != 0 || (*th).left_philo->my_f != 0)
-		if (check_if_dead(th) == 0)
-			return (0);
-	return (1);
-}
-
-void	go_sleeping(data_t *th)
-{
-	ft_scriba("%d va a dormire\n", th);
-	usleep((*th).time_to_sleep);
-	if (check_if_dead(th) == 0)
-		return ;
-	ft_scriba("%d finisce di dormire\n", th);
-	return ;
-}
-
-int	is_someone_dead(data_t *th)
-{
-	int	i;
-
-	i = -1;
-	while(++i < th[0].num_philos)
-		if (th[i].dead == 1)
-			return (0);
-	return (1);
-}
-
-void	*go_eat(void *th)
-{
-	data_t	*cp;
-
-	cp = (data_t *)th;
-	gettimeofday(&(*cp).slay, NULL);
-	while (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && \
-	is_someone_dead((*cp).head_th) != 0) || ((*cp).max_dinners == 0 && is_someone_dead((*cp).head_th) != 0))
-	{
-		if ((*cp).my_f == 0 && (*cp).left_philo->my_f == 0)
-		{
-			pthread_mutex_lock(&((*cp).left_philo->my_fork));
-			pthread_mutex_lock(&(*cp).my_fork);
-			(*cp).my_f = 1;
-			(*cp).left_philo->my_f = 1;
-			ft_scriba("%d inizia a mangiare\n", cp);
-			usleep((*cp).time_to_eat);
-			ft_scriba("%d ha finito\n", cp);
-			(*cp).my_f = 0;
-			(*cp).left_philo->my_f = 0;
-			++(*cp).dinners;
-			gettimeofday(&(*cp).slay, NULL);
-			pthread_mutex_unlock(&((*cp).left_philo->my_fork));
-			pthread_mutex_unlock(&(*cp).my_fork);
-			if (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && is_someone_dead((*cp).head_th) != 0) || ((*cp).max_dinners == 0 && is_someone_dead((*cp).head_th) != 0))
-				go_sleeping(cp);
-		}
-		if (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && is_someone_dead((*cp).head_th) != 0) || (*cp).max_dinners == 0 && is_someone_dead((*cp).head_th) != 0)
-			if (go_thinking(cp) == 0)
-				return (0);
-	}
-	return (0);
 }
 
 void	free_all(data_t *th)
