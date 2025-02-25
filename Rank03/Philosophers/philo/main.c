@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 11:39:35 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:47:26 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	set_data(data_t *th, char *argv[], int argc)
 		th[i].dead = 0;
 		th[i].head_th = th;
 		if (argc == 6)
-		th[i].max_dinners = ft_atoi(argv[5]);
+			th[i].max_dinners = ft_atoi(argv[5]);
 		else
-		th[i].max_dinners = 0;
+			th[i].max_dinners = 0;
 		if (i != 0)
 			th[i].left_philo = &th[i - 1];
 	}
@@ -102,6 +102,7 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-//devo capire come fare a mandare singolarmente i messaggi senza che aspettino gli altri thread
-//+ si sminchia se gli do quanti pasti fare e se do 3 philo dopop un po' uno scompare senza morire
-//da fare TANTI, TANTI TEST... pero' non leakka
+//alcune cose non vengono scritte nell'ordine corretto, perche' virtualmente avvengono nello
+//stesso momento ma a me seve che siano in un ordine specifico (o almeno credo)
+//+ helgrind mi rompe ancora il cazzo perche' in go_eat guardo gli indici delle forchette senza
+//lockare e in check_if_dead modifico dead senza lockare

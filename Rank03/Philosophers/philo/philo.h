@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 11:31:12 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:39:37 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ void	*go_eat(void *th);
 
 //in more.c
 long long	get_curr_time(void);
+void		locks(data_t *th);
+void		unlocks(data_t *th);
+void		gnam(data_t *th);
 
 #endif
