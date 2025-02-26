@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:09:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 14:55:52 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:00:40 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	go_thinking(t_data *th)
 	while (1)
 	{
 		if (check_if_dead(th) == 0)
-			break; ;
+			break ;
 		locks(th);
 		if ((*th).my_f == 0 && (*th).left_philo->my_f == 0)
 		{
@@ -71,7 +71,7 @@ void	go_thinking(t_data *th)
 void	go_sleeping(t_data *th)
 {
 	ft_scriba("%lld %d is sleeping\n", th);
-	usleep((*th).time_to_sleep * 1000);
+	manual_sleep(th, (*th).time_to_sleep);
 	if (check_if_dead(th) == 0)
 		return ;
 	return ;
@@ -84,9 +84,7 @@ void	*go_eat(void *th)
 	cp = (t_data *)th;
 	gettimeofday(&(*cp).start, NULL);
 	gettimeofday(&(*cp).last_eat, NULL);
-	while (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && \
-	is_someone_dead((*cp).head_th) != 0) || ((*cp).max_dinners == 0 && \
-	is_someone_dead((*cp).head_th) != 0))
+	while (mother_fucking_daaamn(cp))
 	{
 		locks(cp);
 		if ((*cp).my_f == 0 && (*cp).left_philo->my_f == 0)
@@ -95,16 +93,12 @@ void	*go_eat(void *th)
 			gnam(cp);
 			if (check_if_dead(cp) == 0)
 				break ;
-			if (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && \
-			is_someone_dead((*cp).head_th) != 0) || ((*cp).max_dinners == 0 && \
-			is_someone_dead((*cp).head_th) != 0))
+			if (mother_fucking_daaamn(cp))
 				go_sleeping(cp);
 		}
 		else
 			unlocks(cp);
-		if (((*cp).max_dinners != 0 && (*cp).dinners < (*cp).max_dinners && \
-		is_someone_dead((*cp).head_th) != 0) || (*cp).max_dinners == 0 && \
-		is_someone_dead((*cp).head_th) != 0)
+		if (mother_fucking_daaamn(cp))
 			go_thinking(cp);
 	}
 	return (0);

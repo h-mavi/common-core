@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 14:23:23 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:01:34 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ long long	get_curr_time(void);
 void		locks(t_data *th);
 void		unlocks(t_data *th);
 void		gnam(t_data *th);
+void		manual_sleep(t_data *th, long long time);
+
+//in bruuuuuuuhhh.c
+int			mother_fucking_daaamn(t_data *th);
 
 #endif

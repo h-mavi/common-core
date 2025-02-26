@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:28:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 14:47:46 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:49:32 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	gnam(t_data *th)
 	ft_scriba("%lld %d has taken a fork\n", th);
 	gettimeofday(&(*th).last_eat, NULL);
 	ft_scriba("%lld %d is eating\n", th);
-	usleep((*th).time_to_eat * 1000);
+	manual_sleep(th, (*th).time_to_eat);
 	++(*th).dinners;
 	locks(th);
 	(*th).my_f = 0;
@@ -69,3 +69,15 @@ void	gnam(t_data *th)
 	unlocks(th);
 }
 
+void	manual_sleep(t_data *th, long long time)
+{
+	long long	i;
+
+	i = get_curr_time();
+	while (is_someone_dead((*th).head_th) != 0)
+	{
+		if ((get_curr_time() - i) >= time)
+			break ;
+		usleep(50);
+	}
+}
