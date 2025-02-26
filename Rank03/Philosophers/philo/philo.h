@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 16:44:43 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:23:23 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_data
 	pthread_t		philo;
 	pthread_mutex_t	my_fork;
 	pthread_mutex_t	printing;
+	pthread_mutex_t	mortem;
 	int				num_philos;
 	int				whoami;
 	long long		time_to_die;

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:28:43 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 16:39:17 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:47:46 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,16 @@ void	gnam(t_data *th)
 	locks(th);
 	(*th).my_f = 1;
 	(*th).left_philo->my_f = 1;
+	unlocks(th);
 	ft_scriba("%lld %d has taken a fork\n", th);
 	ft_scriba("%lld %d has taken a fork\n", th);
 	gettimeofday(&(*th).last_eat, NULL);
 	ft_scriba("%lld %d is eating\n", th);
 	usleep((*th).time_to_eat * 1000);
 	++(*th).dinners;
+	locks(th);
 	(*th).my_f = 0;
 	(*th).left_philo->my_f = 0;
 	unlocks(th);
 }
 
-// ft_scriba("%lld %d has finished eating\n", th);

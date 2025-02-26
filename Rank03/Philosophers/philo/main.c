@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 16:37:44 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:23:15 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	set_data(t_data *th, char *argv[], int argc)
 	{
 		pthread_mutex_init(&th[i].my_fork, NULL);
 		pthread_mutex_init(&th[i].printing, NULL);
+		pthread_mutex_init(&th[i].mortem, NULL);
 		th[i].num_philos = ft_atoi(argv[1]);
 		th[i].whoami = i + 1;
 		th[i].time_to_die = ft_atoi(argv[2]);
@@ -74,6 +75,7 @@ void	free_all(t_data *th)
 	{
 		pthread_mutex_destroy(&th[i].my_fork);
 		pthread_mutex_destroy(&th[i].printing);
+		pthread_mutex_destroy(&th[i].mortem);
 		i++;
 	}
 	free(th);
