@@ -5,103 +5,83 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 10:09:19 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 16:00:40 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/03/12 14:10:16 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_if_dead(t_data *th)
+//funzione per gestire il caso di un filosofo
+void	*lonely(void *args)
 {
-	long long	diff;
+	char	**argv;
 
-	diff = (get_curr_time()) - (((*th).last_eat.tv_sec * 1000) + \
-	((*th).last_eat.tv_usec / 1000));
-	if (diff >= (*th).time_to_die)
-	{
-		ft_scriba("%lld %d is dead\n", th);
-		pthread_mutex_lock(&(*th).mortem);
-		(*th).dead = 1;
-		pthread_mutex_unlock(&(*th).mortem);
-		return (0);
-	}
-	return (1);
+	argv = (char **)args;
+	printf("%d %d has taken a fork\n", 0, 1);
+	usleep(ft_atoi(argv[2]) * 1000);
+	printf("%d %d is dead\n", ft_atoi(argv[2]), 1);
+	return (NULL);
 }
 
-int	is_someone_dead(t_data *th)
+//funzione unicamente creata per contenere un if enorme
+int	if_check(t_philo *th)
 {
-	int	*i;
-
-	i = (int *)malloc(sizeof(int));
-	*i = -1;
-	while (++*i < th[0].num_philos)
-	{
-		pthread_mutex_lock(&th[*i].mortem);
-		if (th[*i].dead == 1)
-		{
-			pthread_mutex_unlock(&th[*i].mortem);
-			free(i);
-			return (0);
-		}
-		pthread_mutex_unlock(&th[*i].mortem);
-	}
-	free(i);
-	return (1);
-}
-
-void	go_thinking(t_data *th)
-{
-	ft_scriba("%lld %d is thinking\n", th);
-	while (1)
-	{
-		if (check_if_dead(th) == 0)
-			break ;
-		locks(th);
-		if ((*th).my_f == 0 && (*th).left_philo->my_f == 0)
-		{
-			unlocks(th);
-			break ;
-		}
-		unlocks(th);
-	}
-	return ;
-}
-
-void	go_sleeping(t_data *th)
-{
-	ft_scriba("%lld %d is sleeping\n", th);
-	manual_sleep(th, (*th).time_to_sleep);
-	if (check_if_dead(th) == 0)
-		return ;
-	return ;
-}
-
-void	*go_eat(void *th)
-{
-	t_data	*cp;
-
-	cp = (t_data *)th;
-	gettimeofday(&(*cp).start, NULL);
-	gettimeofday(&(*cp).last_eat, NULL);
-	while (mother_fucking_daaamn(cp))
-	{
-		locks(cp);
-		if ((*cp).my_f == 0 && (*cp).left_philo->my_f == 0)
-		{
-			unlocks(cp);
-			gnam(cp);
-			if (check_if_dead(cp) == 0)
-				break ;
-			if (mother_fucking_daaamn(cp))
-				go_sleeping(cp);
-		}
-		else
-			unlocks(cp);
-		if (mother_fucking_daaamn(cp))
-			go_thinking(cp);
-	}
+	if (((*th).gen->max_dinners != 0 && (*th).dinners < (*th).gen->max_dinners && \
+	is_someone_dead((*th).head_th) != 0) || ((*th).gen->max_dinners == 0 && \
+	is_someone_dead((*th).head_th) != 0))
+		return (1);
 	return (0);
 }
 
-// ft_scriba("%lld %d has finished sleeping\n", th);
+//permette di dormire
+void	go_sleeping(t_philo *th)
+{
+	ft_scriba("%lld %d is sleeping\n", th);
+	manual_sleep(th, (*th).gen->time_to_sleep);
+	return ;
+}
+
+//permette di mangiare
+void	go_eat(t_philo *th)
+{
+	locks(th);
+	ft_scriba("%lld %d is eating\n", th);
+	pthread_mutex_lock(&(*th).timing);
+	gettimeofday(&(*th).last_eat, NULL);
+	++(*th).dinners;
+	pthread_mutex_unlock(&(*th).timing);
+	manual_sleep(th, (*th).gen->time_to_eat);
+	unlocks(th);
+}
+
+//setta un lag di 10 microsec. per i filosofi pari
+void	lag(t_philo *th)
+{
+	if ((*th).whoami % 2 == 0)
+		usleep(100);
+}
+
+//inizio della routine dove viene settato lo start e dove avviene il loop di mangiare-dormire-pensare
+void	*routine(void *args)
+{
+	t_philo	*th;
+
+	th = (t_philo *)args;
+	lag(th);
+	pthread_mutex_lock(&(*th).timing);
+	gettimeofday(&(*th).start, NULL);
+	gettimeofday(&(*th).last_eat, NULL);
+	pthread_mutex_unlock(&(*th).timing);
+	while (if_check(th))
+	{
+		if (if_check(th))
+		{
+			go_eat(th);
+			go_sleeping(th);
+		}
+		if (if_check(th))
+			ft_scriba("%lld %d is thinking\n", th);
+	}
+	return (0);
+}

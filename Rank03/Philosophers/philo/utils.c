@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 09:00:48 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/25 16:44:07 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/03/06 10:29:44 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/03/12 09:30:47 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,38 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-int	im_writing(t_data *th)
+int	is_str_digit(char *str)
 {
-	int	*i;
+	int	i;
 
-	i = (int *)malloc(sizeof(int));
-	*i = -1;
-	while (++*i < th[0].num_philos)
-		pthread_mutex_lock(&th[*i].printing);
-	if (is_someone_dead((*th).head_th) == 0)
-	{
-		*i = -1;
-		while (++*i < th[0].num_philos)
-			pthread_mutex_unlock(&th[*i].printing);
-		free(i);
-		return (0);
-	}
-	free(i);
-	return (1);
+	i = -1;
+	while (str[++i])
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+	return (0);
 }
 
-void	i_finished(t_data *th)
+void	*ft_bzero(void *buffer, size_t count)
 {
-	int	*i;
+	char	*str;
+	size_t	i;
 
-	i = (int *)malloc(sizeof(int));
-	*i = -1;
-	while (++*i < th[0].num_philos)
-		pthread_mutex_unlock(&th[*i].printing);
-	free(i);
+	if (buffer == NULL)
+		return (NULL);
+	str = (char *)buffer;
+	i = 0;
+	while (i < count)
+		str[i++] = 0;
+	return (buffer);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*str;
+
+	str = malloc(nmemb * size);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, size * nmemb);
+	return (str);
 }

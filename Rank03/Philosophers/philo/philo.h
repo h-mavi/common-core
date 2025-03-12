@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 08:54:00 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 16:01:34 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/03/06 10:25:12 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/03/12 09:13:25 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,56 +18,64 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_data
+typedef struct s_gen
 {
-	pthread_t		philo;
-	pthread_mutex_t	my_fork;
 	pthread_mutex_t	printing;
-	pthread_mutex_t	mortem;
+	pthread_mutex_t	murtem;
 	int				num_philos;
-	int				whoami;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				max_dinners;
+}	t_gen;
+
+typedef struct s_philo
+{
+	pthread_t		filo;
+	pthread_mutex_t	my_fork;
+	pthread_mutex_t	*left_fork; //unica cosa che ho fatto, indirizzo della fork e non del philo
+	pthread_mutex_t	timing;
+	int				whoami;
 	int				dinners;
-	int				my_f;
 	int				dead;
 	struct timeval	start;
 	struct timeval	last_eat;
-	struct s_data	*left_philo;
-	struct s_data	*head_th;
-}		t_data;
+	struct s_philo	*head_th;
+	t_gen			*gen;
+}	t_philo;
+
+//in main.c
+void		set_data(t_philo *th, char *argv[], int argc, t_gen *gen);
+int			check_error(int argc, char *argv[]);
+void		set_gen(char *argv[], int argc, t_gen *gen);
+void		free_all(t_philo *th);
+
+//in more.c
+void		locks(t_philo *th);
+void		unlocks(t_philo *th);
+long long	get_curr_time(void);
+long long	get_start_time(t_philo *th);
+void		ft_scriba(char	*str, t_philo *th);
+void		manual_sleep(t_philo *th, long long time);
+
+//in ripper.c
+void		*check_death(void   *args);
+int			is_someone_dead(t_philo *th);
+
+//in tasks.c
+void		*lonely(void *args);
+int			if_check(t_philo *th);
+void		go_sleeping(t_philo *th);
+void		go_eat(t_philo *th);
+void		lag(t_philo *th);
+void		*routine(void *args);
 
 //in utils.c
 int			ft_isdigit(int a);
 int			ft_iswhitespace(char c);
 int			ft_atoi(const char *str);
-int			im_writing(t_data *th);
-void		i_finished(t_data *th);
-// void	printing(t_data *th);
-
-//in main.c
-void		ft_scriba(char	*str, t_data *th);
-int			check_error(int argc, char *argv[]);
-void		set_data(t_data *th, char *argv[], int argc);
-void		free_all(t_data *th);
-
-//tasks.c
-int			check_if_dead(t_data *th);
-int			is_someone_dead(t_data *th);
-void		go_thinking(t_data *th);
-void		go_sleeping(t_data *th);
-void		*go_eat(void *th);
-
-//in more.c
-long long	get_curr_time(void);
-void		locks(t_data *th);
-void		unlocks(t_data *th);
-void		gnam(t_data *th);
-void		manual_sleep(t_data *th, long long time);
-
-//in bruuuuuuuhhh.c
-int			mother_fucking_daaamn(t_data *th);
+int			is_str_digit(char *str);
+void		*ft_bzero(void *buffer, size_t count);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 #endif

@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/17 13:03:59 by mfanelli          #+#    #+#              #
-#    Updated: 2025/02/26 16:01:41 by mfanelli         ###   ########.fr        #
+#    Created: 2025/03/06 10:25:46 by mfanelli          #+#    #+#              #
+#    Updated: 2025/03/11 11:51:29 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SOURCES = main.c utils.c tasks.c more.c bruuuuuuuhhh.c
+SOURCES = utils.c tasks.c ripper.c more.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc

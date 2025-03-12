@@ -5,37 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 08:53:42 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/02/26 14:23:15 by mfanelli         ###   ########.fr       */
+/*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
+/*   Updated: 2025/03/12 14:17:18 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_scriba(char	*str, t_data *th)
-{
-	if (im_writing((*th).head_th) != 0)
-	{
-		printf(str, (get_curr_time() - (((*th).start.tv_sec * 1000) + \
-		((*th).start.tv_usec / 1000))), (*th).whoami);
-		i_finished((*th).head_th);
-	}
-}
-
+//parsing degli errori
 int	check_error(int argc, char *argv[])
 {
+	pthread_t	phi;
+
 	if (argc != 5 && argc != 6)
 		return (printf("Troppi o troppi pochi argomenti\n"));
-	if (ft_atoi(argv[1]) < 2)
-		return (printf("Troppi pochi philos\n"));
+	if (is_str_digit(argv[1]) != 0 || is_str_digit(argv[2]) != 0 || \
+	is_str_digit(argv[2]) != 0 || is_str_digit(argv[3]) != 0 || \
+	is_str_digit(argv[4]) != 0 || (argv[5] != 0 && is_str_digit(argv[5]) != 0))
+		return (printf("Argomenti non validi\n"));
 	if (ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
 		return (printf("Tempistiche troppo basse\n"));
 	if (argc == 6 && ft_atoi(argv[5]) < 1)
 		return (printf("I philos non possono mangiare 0 volte\n"));
+	if (ft_atoi(argv[1]) < 2)
+	{
+		pthread_create(&phi, NULL, &lonely, (void *)argv);
+		pthread_join(phi, NULL);
+		return (1);
+	}
 	return (0);
 }
 
-void	set_data(t_data *th, char *argv[], int argc)
+//imposta le informazioni nella struttura di ogni filosofo
+void	set_data(t_philo *th, char *argv[], int argc, t_gen *gen)
 {
 	int	i;
 
@@ -43,39 +45,47 @@ void	set_data(t_data *th, char *argv[], int argc)
 	while (++i < ft_atoi(argv[1]))
 	{
 		pthread_mutex_init(&th[i].my_fork, NULL);
-		pthread_mutex_init(&th[i].printing, NULL);
-		pthread_mutex_init(&th[i].mortem, NULL);
-		th[i].num_philos = ft_atoi(argv[1]);
+		pthread_mutex_init(&th[i].timing, NULL);
 		th[i].whoami = i + 1;
-		th[i].time_to_die = ft_atoi(argv[2]);
-		th[i].time_to_eat = ft_atoi(argv[3]);
-		th[i].time_to_sleep = ft_atoi(argv[4]);
 		th[i].dinners = 0;
-		th[i].my_f = 0;
 		th[i].dead = 0;
 		th[i].head_th = th;
-		if (argc == 6)
-			th[i].max_dinners = ft_atoi(argv[5]);
-		else
-			th[i].max_dinners = 0;
+		th[i].gen = gen;
 		if (i != 0)
-			th[i].left_philo = &th[i - 1];
+			th[i].left_fork = &th[i - 1].my_fork;
 	}
-	th[0].left_philo = &th[i - 1];
+	th[0].left_fork = &th[i - 1].my_fork;
 }
 
-void	free_all(t_data *th)
+//imposta le informazioni della struttura gen
+void	set_gen(char *argv[], int argc, t_gen *gen)
+{
+	pthread_mutex_init(&(gen->printing), NULL);
+	pthread_mutex_init(&(gen->murtem), NULL);
+	(*gen).num_philos = ft_atoi(argv[1]);
+	(*gen).time_to_die = ft_atoi(argv[2]);
+	(*gen).time_to_eat = ft_atoi(argv[3]);
+	(*gen).time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		(*gen).max_dinners = ft_atoi(argv[5]);
+	else
+		(*gen).max_dinners = 0;
+}
+
+//libera la memora allocata e i distrugge i mutex
+void	free_all(t_philo *th)
 {
 	int	i;
 	int	max;
 
-	max = th[0].num_philos;
+	max = th[0].gen->num_philos;
 	i = 0;
+	pthread_mutex_destroy(&(th[0].gen->printing));
+	pthread_mutex_destroy(&(th[0].gen->murtem));
 	while (i < max)
 	{
 		pthread_mutex_destroy(&th[i].my_fork);
-		pthread_mutex_destroy(&th[i].printing);
-		pthread_mutex_destroy(&th[i].mortem);
+		pthread_mutex_destroy(&th[i].timing);
 		i++;
 	}
 	free(th);
@@ -83,27 +93,34 @@ void	free_all(t_data *th)
 
 int	main(int argc, char *argv[])
 {
-	int		i;
-	t_data	*th;
+	int			i;
+	t_gen		gen;
+	t_philo		*th;
+	pthread_t	thanos;
 
 	if (check_error(argc, argv) != 0)
 		return (0);
-	th = (t_data *)malloc(sizeof(t_data) * ft_atoi(argv[1]));
-	set_data(th, argv, argc);
+	th = (t_philo *)ft_calloc(sizeof(t_philo) , ft_atoi(argv[1]));
+	set_gen(argv, argc, &gen);
+	set_data(th, argv, argc, &gen);
 	i = -1;
-	while (++i < th[0].num_philos)
-		if (pthread_create(&th[i].philo, NULL, &go_eat, (void *)&th[i]) != 0)
+	while (++i < th[0].gen->num_philos)
+		if (pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]) != 0)
 			return (0);
+	if (pthread_create(&thanos, NULL, &check_death, (void *)&th) != 0)
+		return (0);
 	i = -1;
-	while (++i < th[0].num_philos)
-		if (pthread_join(th[i].philo, NULL) != 0)
+	while (++i < th[0].gen->num_philos)
+		if (pthread_join(th[i].filo, NULL) != 0)
 			return (0);
+	if (pthread_join(thanos, NULL) != 0)
+		return (0);
 	free_all(th);
 	return (0);
 }
 
-//alcune cose non vengono scritte nell'ordine corretto, perche' virtualmente
-//avvengono nello stesso momento ma a me seve che siano in un ordine specifico
-//(o almeno credo) + helgrind mi rompe ancora il cazzo perche' in go_eat
-//guardo gli indici delle forchette senza lockare e in check_if_dead modifico
-// dead senza lockare
+
+//problemi: ogni tanto stampa qualcosa anche dopo che qualcuno e' morto (di solito solo una riga di troppo);
+//il lag non e' troppo corretto perche' molte volte non fa partire i dispari tutti insieme in modo corretto e quindi
+// anche gli es con un numero di philo pari non funziona, soprattutt se e' un numero grosso;
+//obv gli es. con un numero di philo dispiari non funzionano; il timestamp non e' perfetto...
