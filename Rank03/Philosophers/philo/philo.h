@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:25:12 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:22:16 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:31:22 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 	int				whoami;
 	int				dinners;
 	int				dead;
-	struct timeval	start;
+	long long		start;
 	struct timeval	last_eat;
 	struct s_philo	*head_th;
 	t_gen			*gen;
@@ -54,7 +54,6 @@ void		free_all(t_philo *th);
 void		locks(t_philo *th);
 void		unlocks(t_philo *th);
 long long	get_curr_time(void);
-long long	get_start_time(t_philo *th);
 void		ft_scriba(char	*str, t_philo *th);
 void		manual_sleep(t_philo *th, long long time);
 

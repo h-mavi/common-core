@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:48:54 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:14:57 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:00:20 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,12 @@ long long	get_curr_time(void)
 	return (tmp);
 }
 
-//ritorna il tempo d'inizio del programma
-long long	get_start_time(t_philo *th)
-{
-	long long		tmp;
-
-	pthread_mutex_lock(&(*th).timing);
-	tmp = (((*th).start.tv_sec * 1000) + ((*th).start.tv_usec / 1000));
-	pthread_mutex_unlock(&(*th).timing);
-	return (tmp);
-}
-
 //scrive sul terminale bloccando il mutex della stampa
 void	ft_scriba(char	*str, t_philo *th)
 {
 	pthread_mutex_lock(&(th->gen->printing));
 	if (is_someone_dead((*th).head_th) != 0)
-		printf(str, (get_curr_time() - get_start_time(th)), (*th).whoami);
+		printf(str, (get_curr_time() - (*th).start), (*th).whoami);
 	pthread_mutex_unlock(&(th->gen->printing));
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:37:22 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:13:23 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:40:58 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*check_death(void   *args)
 		while (++i < (*head)[0].gen->num_philos)
 		{
 			pthread_mutex_lock(&(*head)[i].timing);
-			if ((*head)[i].start.tv_sec == 0 && (*head)[i].start.tv_usec == 0)
+			if ((*head)[i].start == 0)
 			{
 				pthread_mutex_unlock(&(*head)[i].timing);
 				continue ;

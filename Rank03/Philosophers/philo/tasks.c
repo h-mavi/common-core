@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:26:09 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:59:09 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	*routine(void *args)
 
 	th = (t_philo *)args;
 	pthread_mutex_lock(&(*th).timing);
-	gettimeofday(&(*th).start, NULL);
 	gettimeofday(&(*th).last_eat, NULL);
 	pthread_mutex_unlock(&(*th).timing);
 	while (if_check(th))

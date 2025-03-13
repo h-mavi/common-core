@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:25:42 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:59:18 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	check_error(int argc, char *argv[])
 //imposta le informazioni nella struttura di ogni filosofo
 void	set_data(t_philo *th, char *argv[], int argc, t_gen *gen)
 {
-	int	i;
+	int				i;
+	struct timeval	tmp;
 
 	i = -1;
 	while (++i < ft_atoi(argv[1]))
@@ -51,6 +52,8 @@ void	set_data(t_philo *th, char *argv[], int argc, t_gen *gen)
 		th[i].dead = 0;
 		th[i].head_th = th;
 		th[i].gen = gen;
+		gettimeofday(&tmp, NULL);
+		th[i].start = (tmp.tv_sec * 1000) + (tmp.tv_usec / 1000);
 		if (i != 0)
 			th[i].left_fork = &th[i - 1].my_fork;
 	}

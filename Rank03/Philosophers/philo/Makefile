@@ -6,7 +6,7 @@
 #    By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 10:25:46 by mfanelli          #+#    #+#              #
-#    Updated: 2025/03/11 11:51:29 by mfanelli         ###   ########.fr        #
+#    Updated: 2025/03/13 10:16:29 by mfanelli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,4 +34,4 @@ fclean: clean
 re : fclean all
 
 .PHONY: all bonus clean fclean re
-.SILENT:
+#.SILENT:
