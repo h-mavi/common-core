@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:59:09 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:28:41 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*lonely(void *args)
 	argv = (char **)args;
 	printf("%d %d has taken a fork\n", 0, 1);
 	usleep(ft_atoi(argv[2]) * 1000);
-	printf("%d %d is dead\n", ft_atoi(argv[2]), 1);
+	printf("%d %d died\n", ft_atoi(argv[2]), 1);
 	return (NULL);
 }
 

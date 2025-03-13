@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:59:18 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:32:50 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int	check_error(int argc, char *argv[])
 	pthread_t	phi;
 
 	if (argc != 5 && argc != 6)
-		return (printf("Troppi o troppi pochi argomenti\n"));
+		return (printf("Too many or too few arguments\n"));
 	if (is_str_digit(argv[1]) != 0 || is_str_digit(argv[2]) != 0 || \
 	is_str_digit(argv[2]) != 0 || is_str_digit(argv[3]) != 0 || \
 	is_str_digit(argv[4]) != 0 || (argv[5] != 0 && is_str_digit(argv[5]) != 0))
-		return (printf("Argomenti non validi\n"));
+		return (printf("Not valid arguments\n"));
 	if (ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
-		return (printf("Tempistiche troppo basse\n"));
+		return (printf("Times too short\n"));
 	if (argc == 6 && ft_atoi(argv[5]) < 1)
-		return (printf("I philos non possono mangiare 0 volte\n"));
+		return (printf("Philos cant't eat 0 times\n"));
 	if (ft_atoi(argv[1]) < 2)
 	{
 		pthread_create(&phi, NULL, &lonely, (void *)argv);
