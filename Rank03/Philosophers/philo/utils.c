@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:44 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/12 09:30:47 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:39:58 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,4 @@ void	*ft_bzero(void *buffer, size_t count)
 	while (i < count)
 		str[i++] = 0;
 	return (buffer);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*str;
-
-	str = malloc(nmemb * size);
-	if (!str)
-		return (NULL);
-	ft_bzero(str, size * nmemb);
-	return (str);
 }

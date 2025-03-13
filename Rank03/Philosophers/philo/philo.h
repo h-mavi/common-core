@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:25:12 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 09:31:22 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:14:37 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_philo
 {
 	pthread_t		filo;
 	pthread_mutex_t	my_fork;
-	pthread_mutex_t	*left_fork; //unica cosa che ho fatto, indirizzo della fork e non del philo
+	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	timing;
 	int				whoami;
 	int				dinners;
@@ -58,7 +58,10 @@ void		ft_scriba(char	*str, t_philo *th);
 void		manual_sleep(t_philo *th, long long time);
 
 //in ripper.c
-void		*check_death(void   *args);
+void		do_it(t_philo *th);
+int			control(t_philo *th);
+void		death_core(t_philo **th, int *flag, int *i);
+void		*check_death(void *args);
 int			is_someone_dead(t_philo *th);
 
 //in tasks.c
@@ -74,6 +77,8 @@ int			ft_iswhitespace(char c);
 int			ft_atoi(const char *str);
 int			is_str_digit(char *str);
 void		*ft_bzero(void *buffer, size_t count);
+
+//in bruh.c
 void		*ft_calloc(size_t nmemb, size_t size);
 
 #endif

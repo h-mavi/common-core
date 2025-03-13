@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 10:28:41 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:53:11 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	*lonely(void *args)
 //funzione unicamente creata per contenere un if enorme
 int	if_check(t_philo *th)
 {
-	if (((*th).gen->max_dinners != 0 && (*th).dinners < (*th).gen->max_dinners && \
+	if (((*th).gen->max_dinners != 0 && \
+	(*th).dinners < (*th).gen->max_dinners && \
 	is_someone_dead((*th).head_th) != 0) || ((*th).gen->max_dinners == 0 && \
 	is_someone_dead((*th).head_th) != 0))
 		return (1);
@@ -55,7 +56,8 @@ void	go_eat(t_philo *th)
 	unlocks(th);
 }
 
-//inizio della routine dove viene settato lo start e dove avviene il loop di mangiare-dormire-pensare
+//inizio della routine dove viene settato lo start e dove avviene 
+//il loop di mangiare-dormire-pensare
 void	*routine(void *args)
 {
 	t_philo	*th;
@@ -74,7 +76,7 @@ void	*routine(void *args)
 		if (if_check(th))
 		{
 			ft_scriba("%lld %d is thinking\n", th);
-			usleep(1000); //aggiunto un'attesa obbligatoria per mantenere la precedenza
+			usleep(1000);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 10:32:50 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:18:16 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,31 +103,21 @@ int	main(int argc, char *argv[])
 
 	if (check_error(argc, argv) != 0)
 		return (0);
-	th = (t_philo *)ft_calloc(sizeof(t_philo) , ft_atoi(argv[1]));
+	th = (t_philo *)ft_calloc(sizeof(t_philo), ft_atoi(argv[1]));
 	set_gen(argv, argc, &gen);
 	set_data(th, argv, argc, &gen);
 	i = -1;
 	while (++i < th[0].gen->num_philos)
 	{
-		if (th[i].whoami % 2 == 0) ///aggiunto il lag qui al posto che nella routine
-			usleep(1000);
-		if (pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]) != 0)
-			return (0);
+		if (th[i].whoami % 2 == 0)
+			usleep(500);
+		pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]);
 	}
-	if (pthread_create(&thanos, NULL, &check_death, (void *)&th) != 0)
-		return (0);
+	pthread_create(&thanos, NULL, &check_death, (void *)&th);
 	i = -1;
 	while (++i < th[0].gen->num_philos)
-		if (pthread_join(th[i].filo, NULL) != 0)
-			return (0);
-	if (pthread_join(thanos, NULL) != 0)
-		return (0);
+		pthread_join(th[i].filo, NULL);
+	pthread_join(thanos, NULL);
 	free_all(th);
 	return (0);
 }
-
-
-//problemi: ogni tanto stampa qualcosa anche dopo che qualcuno e' morto (di solito solo una riga di troppo);
-//il lag non e' troppo corretto perche' molte volte non fa partire i dispari tutti insieme in modo corretto e quindi
-// anche gli es con un numero di philo pari non funziona, soprattutt se e' un numero grosso;
-//obv gli es. con un numero di philo dispiari non funzionano; il timestamp non e' perfetto...
