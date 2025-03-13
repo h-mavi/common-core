@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/12 14:17:18 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:25:42 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,12 @@ int	main(int argc, char *argv[])
 	set_data(th, argv, argc, &gen);
 	i = -1;
 	while (++i < th[0].gen->num_philos)
+	{
+		if (th[i].whoami % 2 == 0) ///aggiunto il lag qui al posto che nella routine
+			usleep(1000);
 		if (pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]) != 0)
 			return (0);
+	}
 	if (pthread_create(&thanos, NULL, &check_death, (void *)&th) != 0)
 		return (0);
 	i = -1;

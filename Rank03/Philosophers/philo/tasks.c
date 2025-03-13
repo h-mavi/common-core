@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/12 14:10:16 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:26:09 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,12 @@ void	go_eat(t_philo *th)
 	unlocks(th);
 }
 
-//setta un lag di 10 microsec. per i filosofi pari
-void	lag(t_philo *th)
-{
-	if ((*th).whoami % 2 == 0)
-		usleep(100);
-}
-
 //inizio della routine dove viene settato lo start e dove avviene il loop di mangiare-dormire-pensare
 void	*routine(void *args)
 {
 	t_philo	*th;
 
 	th = (t_philo *)args;
-	lag(th);
 	pthread_mutex_lock(&(*th).timing);
 	gettimeofday(&(*th).start, NULL);
 	gettimeofday(&(*th).last_eat, NULL);
@@ -81,7 +73,10 @@ void	*routine(void *args)
 			go_sleeping(th);
 		}
 		if (if_check(th))
+		{
 			ft_scriba("%lld %d is thinking\n", th);
+			usleep(1000); //aggiunto un'attesa obbligatoria per mantenere la precedenza
+		}
 	}
 	return (0);
 }

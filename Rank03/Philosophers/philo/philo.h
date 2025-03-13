@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:25:12 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/12 09:13:25 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:22:16 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void		*lonely(void *args);
 int			if_check(t_philo *th);
 void		go_sleeping(t_philo *th);
 void		go_eat(t_philo *th);
-void		lag(t_philo *th);
 void		*routine(void *args);
 
 //in utils.c

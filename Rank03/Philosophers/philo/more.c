@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:48:54 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/12 14:11:55 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 09:14:57 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	locks(t_philo *th)
 {
 	if ((*th).whoami == 1)
 	{
-		pthread_mutex_lock(&(*(*th).left_fork));
-		ft_scriba("%lld %d has taken a fork\n", th);
 		pthread_mutex_lock(&(*th).my_fork);
+		ft_scriba("%lld %d has taken a fork\n", th);
+		pthread_mutex_lock(&(*(*th).left_fork));
 		ft_scriba("%lld %d has taken a fork\n", th);
 	}
 	else
 	{
-		pthread_mutex_lock(&(*th).my_fork);
-		ft_scriba("%lld %d has taken a fork\n", th);
 		pthread_mutex_lock(&(*(*th).left_fork));
+		ft_scriba("%lld %d has taken a fork\n", th);
+		pthread_mutex_lock(&(*th).my_fork);
 		ft_scriba("%lld %d has taken a fork\n", th);
 	}
 }
@@ -36,13 +36,13 @@ void	unlocks(t_philo *th)
 {
 	if ((*th).whoami == 1)
 	{
-		pthread_mutex_unlock(&(*th).my_fork);
 		pthread_mutex_unlock(&(*(*th).left_fork));
+		pthread_mutex_unlock(&(*th).my_fork);
 	}
 	else
 	{
-		pthread_mutex_unlock(&(*(*th).left_fork));
 		pthread_mutex_unlock(&(*th).my_fork);
+		pthread_mutex_unlock(&(*(*th).left_fork));
 	}
 }
 
@@ -87,6 +87,6 @@ void	manual_sleep(t_philo *th, long long time)
 	{
 		if ((get_curr_time() - i) >= time)
 			break ;
-		usleep(25);
+		usleep(1);
 	}
 }
