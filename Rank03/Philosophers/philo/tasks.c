@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:29:08 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 10:53:11 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:13:08 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	*routine(void *args)
 		if (if_check(th))
 		{
 			ft_scriba("%lld %d is thinking\n", th);
-			usleep(1000);
+			if (th->gen->num_philos % 2 == 1)
+				usleep(1000);
 		}
 	}
 	return (0);

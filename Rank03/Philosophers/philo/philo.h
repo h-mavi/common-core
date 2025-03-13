@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:25:12 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 11:14:37 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:43:28 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void		*ft_bzero(void *buffer, size_t count);
 
 //in bruh.c
 void		*ft_calloc(size_t nmemb, size_t size);
+void		create_thread(t_philo *th, int i);
 
 #endif

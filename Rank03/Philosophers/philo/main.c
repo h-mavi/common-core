@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 11:18:16 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:43:11 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,25 +99,13 @@ int	main(int argc, char *argv[])
 	int			i;
 	t_gen		gen;
 	t_philo		*th;
-	pthread_t	thanos;
 
 	if (check_error(argc, argv) != 0)
 		return (0);
 	th = (t_philo *)ft_calloc(sizeof(t_philo), ft_atoi(argv[1]));
 	set_gen(argv, argc, &gen);
 	set_data(th, argv, argc, &gen);
-	i = -1;
-	while (++i < th[0].gen->num_philos)
-	{
-		if (th[i].whoami % 2 == 0)
-			usleep(500);
-		pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]);
-	}
-	pthread_create(&thanos, NULL, &check_death, (void *)&th);
-	i = -1;
-	while (++i < th[0].gen->num_philos)
-		pthread_join(th[i].filo, NULL);
-	pthread_join(thanos, NULL);
+	create_thread(th, -1);
 	free_all(th);
 	return (0);
 }
