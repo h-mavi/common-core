@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:26:07 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 16:43:11 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:28:06 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,3 +109,6 @@ int	main(int argc, char *argv[])
 	free_all(th);
 	return (0);
 }
+
+//test che non vanno:
+// 19 210 71 60 2 -> un filosofo dovrebbe morire (fanculo, non e' vero)

@@ -6,7 +6,7 @@
 /*   By: mfanelli <mfanelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:12:53 by mfanelli          #+#    #+#             */
-/*   Updated: 2025/03/13 16:44:38 by mfanelli         ###   ########.fr       */
+/*   Updated: 2025/03/17 09:57:58 by mfanelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	create_thread(t_philo *th, int i)
 	while (++i < th[0].gen->num_philos)
 	{
 		if (th[i].whoami % 2 == 0)
-			usleep(50);
+			usleep(1000);
 		if (pthread_create(&th[i].filo, NULL, &routine, (void *)&th[i]) != 0)
 			return ;
 	}
